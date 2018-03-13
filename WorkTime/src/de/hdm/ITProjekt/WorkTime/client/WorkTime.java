@@ -13,5 +13,7 @@ public class WorkTime implements EntryPoint {
 		
 // Test
 		boolean Hallo = true;
+		
+		double x = 1.2;
 	}
 }
