@@ -15,5 +15,6 @@ public class WorkTime implements EntryPoint {
 		boolean Hallo = true;
 		
 		double x = 1.2;
+		System.out.println("Hallo");
 	}
 }
