@@ -17,20 +17,6 @@ public class WorkTime implements EntryPoint {
 		double x = 1.2;
 		System.out.println("Hallo");
 		
-<<<<<<< HEAD
-		miau miau miauaaa
-		dddd
-=======
-		hdgdgsjdhsd
->>>>>>> branch 'Gruppe1' of https://github.com/Dragonil/GWTWorkTime.git
-	
-	miau miuua
-	
-	dfjsifj
-	MIAUUUUUUUUUUUUUUUUUUUUUUUUUUU
-	lalalaalala
-	miau miau
-	
 	
 	}
 }
