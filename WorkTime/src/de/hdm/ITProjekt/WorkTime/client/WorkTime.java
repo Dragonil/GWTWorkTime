@@ -11,6 +11,6 @@ public class WorkTime implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		
-
+		Boolean HalloGruppe2 = true;
 	}
 }
