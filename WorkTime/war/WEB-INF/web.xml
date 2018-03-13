@@ -7,13 +7,13 @@
 
   <!-- Servlets -->
   <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>de.hdm.ITProjekt.WorkTime.server.GreetingServiceImpl</servlet-class>
+    <servlet-name>ServletName</servlet-name>
+    <servlet-class>de.hdm.ITProjekt.WorkTime.server.JavaServerKlassenName</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/worktime/greet</url-pattern>
+    <servlet-name>ServletName</servlet-name>
+    <url-pattern>/worktime/JavaServiceKlassenPfad</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
