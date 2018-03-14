@@ -5,7 +5,7 @@ Aufgabe:
   Erstelle ein Zeit/Aufgabenmanagment tool mit GWT/Java 
   
 Java Klassen:
-  + User
+  + User 
   + Aufgabe
   + Notiz
   + Kanban
@@ -16,6 +16,6 @@ Java Klassen:
   
 
 
-  Gruppe 1: Katalin, Marco, Burak </br>
+  Gruppe 1: Katalin(Notiz, Statistik), Marco (User, Login), Burak(Aufgabe, Kanban) </br>
   Gruppe 2: Kimly, Janina
   
