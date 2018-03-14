@@ -24,7 +24,7 @@ public class NotizMapper {
 	}
 
 
-public static void löschen(Notiz notiz) {
+public static void Notizlöschen(Notiz notiz) {
 	löschen(notiz.getId());
 }
 

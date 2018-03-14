@@ -14,13 +14,6 @@ public class Notiz {
 		this.farbe = farbe;
 		
 	}
-//	Notiz[] notiz = new Notiz[100];
-//	private void NotizAnlegen(int Inhalt) {
-//		  for(int i=0; i< notiz.length; i++) {
-			  
-//		  }
-			
-//	}
 
 	public Date getDatum() {
 		return datum;
