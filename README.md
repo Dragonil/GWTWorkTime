@@ -14,3 +14,7 @@ Java Klassen:
   + dazugehörige DB Mapper
   
   
+
+  Gruppe 1: Katalin, Marco, Burak </br>
+  Gruppe 2: Kimly, Janina
+  

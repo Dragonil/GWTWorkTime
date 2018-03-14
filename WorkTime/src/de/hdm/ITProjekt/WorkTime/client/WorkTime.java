@@ -11,12 +11,6 @@ public class WorkTime implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		
-// Test
-		boolean Hallo = true;
-		
-		double x = 1.2;
-		System.out.println("Hallo");
-		
-	
+		// GWT Webseite
 	}
 }
