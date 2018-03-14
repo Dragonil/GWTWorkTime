@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 import de.hdm.ITProjekt.WorkTime.shared.Notiz;
 
@@ -58,6 +59,32 @@ public static void Notizlöschen(Notiz notiz) {
 		}
 		return notiz;
 	}
-
+	public static Vector<Notiz> findAll() {
+		
+		Connection con = DBConnection.connection();
+		Vector<Notiz> result = new Vector<Notiz>();
+		
+		try {
+			
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * from notiz " +
+							"where notiz.id");
+			
+			
+			while (rs.next()) {
+			
+			Notiz n = new Notiz(rs.getString("inhalt"), 
+					rs.getString("farbe"));
+					n.setId(rs.getInt("id"));
+			
+			result.addElement(n);
+			}
+			
+			} catch (SQLException e2) {
+			e2.printStackTrace();
+		} 
+		return result;
+		
+	}
 
 }
