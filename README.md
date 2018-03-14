@@ -5,9 +5,9 @@ Aufgabe:
   Erstelle ein Zeit/Aufgabenmanagment tool mit GWT/Java 
   
 Java Klassen:
-  + Person
   + User
   + Aufgabe
+  + Notiz
   + Kanban
   + Statistik
   + Login/Registrierung
