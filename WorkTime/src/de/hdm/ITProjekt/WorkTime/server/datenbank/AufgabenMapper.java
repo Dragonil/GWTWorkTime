@@ -37,8 +37,10 @@ public class AufgabenMapper {
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Aufgabe WHERE titel = " + titel);
-				aufgabe = new aufgaben(rs.getString("startDatum"), rs.getString("endDatum"), rs.getString("titel"), rs.getString("beschreibung"), rs.getInt("arbeitszeit"), rs.getInt("status"), rs.getInt("prio"), rs.getInt("userID");
-		}
+			while(rs.next()) {
+				aufgabe = new aufgaben(rs.getString("startDatum"), rs.getString("endDatum"), rs.getString("titel"), rs.getString("beschreibung"), rs.getInt("arbeitszeit"), rs.getInt("status"), rs.getInt("prio"), rs.getInt("userID"));
+				}
+			}
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -48,14 +50,19 @@ public class AufgabenMapper {
 	public static Vector<aufgaben> findbyALL (aufgaben a)
 	{
 		Connection con = DBConnection.connection();
+		Vector<aufgaben> output = new Vector<aufgaben>();
 		try {
-			
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Aufgabe ");
+			while(rs.next()) {
+			output.add(new aufgaben(rs.getString("startDatum"), rs.getString("endDatum"), rs.getString("titel"), rs.getString("beschreibung"), rs.getInt("arbeitszeit"), rs.getInt("status"), rs.getInt("prio"), rs.getInt("userID")));
+			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return output;
 
 	}
 }
