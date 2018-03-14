@@ -27,6 +27,8 @@ public class UserMapper {
 				u.setTyp(rs.getInt("typ"));
 				u.setVorname(rs.getString("vorname"));
 				u.setLetzterLogin(rs.getDate("letzterLogin"));
+				
+				result.addElement(u);
 
 			}
 
