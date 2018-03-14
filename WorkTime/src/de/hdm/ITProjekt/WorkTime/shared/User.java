@@ -72,4 +72,12 @@ public class User {
 		this.typ = typ;
 	}
 
+	public Date getLetzterLogin() {
+		return letzterLogin;
+	}
+
+	public void setLetzterLogin(Date letzterLogin) {
+		this.letzterLogin = letzterLogin;
+	}
+
 }

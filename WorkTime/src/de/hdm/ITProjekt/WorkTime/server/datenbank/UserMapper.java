@@ -26,6 +26,7 @@ public class UserMapper {
 				u.setPasswort(rs.getString("passwort"));
 				u.setTyp(rs.getInt("typ"));
 				u.setVorname(rs.getString("vorname"));
+				u.setLetzterLogin(rs.getDate("letzterLogin"));
 
 			}
 
