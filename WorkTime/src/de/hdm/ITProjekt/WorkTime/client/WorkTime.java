@@ -11,16 +11,6 @@ public class WorkTime implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		
-		
-		hggfgfgggggggggggggggggg
-<<<<<<< HEAD
-ggggggggggggggggggggfgfgfgf
-hedhfkdjfldjfd
-ggggggggggggg
-gggggg
-=======
-// Test
-		boolean Hallo = true;
->>>>>>> branch 'Gruppe1' of https://github.com/Dragonil/GWTWorkTime.git
+		// GWT Webseite
 	}
 }
