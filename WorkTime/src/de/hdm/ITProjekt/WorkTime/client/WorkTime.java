@@ -11,6 +11,7 @@ public class WorkTime implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		
+
 		// GWT Webseite
 	}
 }
