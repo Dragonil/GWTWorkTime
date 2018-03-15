@@ -145,4 +145,27 @@ public class UserMapper {
 			e.printStackTrace();
 		}
 	}
+
+	public static boolean login(User u) {
+		Connection con = DBConnection.connection();
+
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE email=");
+
+			while (rs.next()) {
+
+				if (rs.getString("passwort") == u.getPasswort())
+					return true;
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+
+	}
+
 }
