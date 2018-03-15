@@ -10,7 +10,10 @@ public class Notiz extends BusinessObject{
 	private String farbe;
 	
 	
-	
+	public Notiz() {
+		super();
+	}
+
 	
 	public Notiz(int id) {
 		super();

@@ -4,6 +4,7 @@ package de.hdm.ITProjekt.WorkTime.DB;
 import java.sql.*;
 import java.util.Vector;
 
+import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
 import de.hdm.ITProjekt.WorkTime.shared.Notiz;
 
 
@@ -50,6 +51,8 @@ public class NotizMapper {
 	      e.printStackTrace();
 	      return null;
 	    }
+	    
+	    return null;
 
 	  }
  
@@ -84,7 +87,7 @@ public class NotizMapper {
 	
 	  public Vector<Notiz> findByDate(Date datum) {
 		  Connection con = DBConnection.connection();
-		  Vector <Notiz> result = new Vector()<Notiz>;
+		  Vector <Notiz> result = new Vector<Notiz>();
 		  
 
 		    try {
@@ -115,7 +118,7 @@ public class NotizMapper {
 	  
 	  public Vector<Notiz> findByTask(Aufgabe a) {
 		  Connection con = DBConnection.connection();
-		  Vector <Notiz> result = new Vector()<Notiz>;
+		  Vector <Notiz> result = new Vector<Notiz>();
 
 		    try {
 		     
