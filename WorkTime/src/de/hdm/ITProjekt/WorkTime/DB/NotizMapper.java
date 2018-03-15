@@ -4,8 +4,8 @@ package de.hdm.ITProjekt.WorkTime.DB;
 import java.sql.*;
 import java.util.Vector;
 
-import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
-import de.hdm.ITProjekt.WorkTime.shared.Notiz;
+import de.hdm.ITProjekt.WorkTime.shared.bo.Aufgabe;
+import de.hdm.ITProjekt.WorkTime.shared.bo.Notiz;
 
 
 public class NotizMapper {
