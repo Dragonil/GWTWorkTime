@@ -47,8 +47,6 @@ public class UserMapper {
 
 			if (rs.next()) {
 				u = new User();
-				// u = new User(rs.getString("email")); Zeigt einen Fehler an, so steht es im
-				// Bsp. von Chris?!
 				u.setId(rs.getInt("id"));
 				u.setEmail(rs.getString("email"));
 				u.setName(rs.getString("name"));
@@ -98,10 +96,22 @@ public class UserMapper {
 					+ user.getId() + user.getEmail() + user.getName() + user.getPasswort() + user.getTyp()
 					+ user.getVorname() + user.getLetzterLogin() + ")");
 
+			/**
+			 * PreparedStatement statement = con .prepareStatement("INSERT INTO blogeintrag
+			 * (id, titel, untertitel) VALUES (?, ?, ?)"); statement.setInt(1,
+			 * blogeintrag.getId()); statement.setString(2, blogeintrag.getTitel());
+			 * statement.setString(3, blogeintrag.getUntertitel());
+			 * statement.executeUpdate();
+			 */
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	public static void deleteUser(User user) {
+		delete(user.getId());
 	}
 
 	public static void delete(int id) {
@@ -109,7 +119,7 @@ public class UserMapper {
 		try {
 
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate("DELETE id FROM User WHERE id = " + id);
+			stmt.executeUpdate("DELETE FROM User WHERE id = " + id);
 
 		} catch (SQLException e) {
 
