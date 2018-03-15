@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
-import de.hdm.ITProjekt.WorkTime.shared.aufgaben;
+import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
 
 public class AufgabenMapper {
 
-	public static void insert (aufgaben a)
+	public static void insert (Aufgabe a)
 	{
 		Connection con = DBConnection.connection();
 		
@@ -30,15 +30,15 @@ public class AufgabenMapper {
 			e.printStackTrace();
 		}
 	}
-	public static aufgaben findbyID (String titel)
+	public static Aufgabe findbyID (String titel)
 	{
 		Connection con = DBConnection.connection();
-		aufgaben aufgabe = null;
+		Aufgabe aufgabe = null;
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Aufgabe WHERE titel = " + titel);
 			while(rs.next()) {
-				aufgabe = new aufgaben(rs.getString("startDatum"), rs.getString("endDatum"), rs.getString("titel"), rs.getString("beschreibung"), rs.getInt("arbeitszeit"), rs.getInt("status"), rs.getInt("prio"), rs.getInt("userID"));
+				aufgabe = new Aufgabe(rs.getString("startDatum"), rs.getString("endDatum"), rs.getString("titel"), rs.getString("beschreibung"), rs.getInt("arbeitszeit"), rs.getInt("status"), rs.getInt("prio"), rs.getInt("userID"));
 				}
 			}
 		catch (SQLException e) {
@@ -47,15 +47,15 @@ public class AufgabenMapper {
 		return aufgabe;
 
 	}
-	public static Vector<aufgaben> findbyALL (aufgaben a)
+	public static Vector<Aufgabe> findbyALL (Aufgabe a)
 	{
 		Connection con = DBConnection.connection();
-		Vector<aufgaben> output = new Vector<aufgaben>();
+		Vector<Aufgabe> output = new Vector<Aufgabe>();
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Aufgabe ");
 			while(rs.next()) {
-			output.add(new aufgaben(rs.getString("startDatum"), rs.getString("endDatum"), rs.getString("titel"), rs.getString("beschreibung"), rs.getInt("arbeitszeit"), rs.getInt("status"), rs.getInt("prio"), rs.getInt("userID")));
+			output.add(new Aufgabe(rs.getString("startDatum"), rs.getString("endDatum"), rs.getString("titel"), rs.getString("beschreibung"), rs.getInt("arbeitszeit"), rs.getInt("status"), rs.getInt("prio"), rs.getInt("userID")));
 			}
 		}
 		catch (SQLException e) {

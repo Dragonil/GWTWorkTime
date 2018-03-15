@@ -25,11 +25,11 @@ public class NotizMapper {
 	}
 
 
-public static void Notizlöschen(Notiz notiz) {
-	löschen(notiz.getId());
+public static void Notizloeschen(Notiz notiz) {
+	loeschen(notiz.getId());
 }
 
-	public static void löschen(int id) {
+	public static void loeschen(int id) {
 
 		Connection con = DBConnection.connection();
 		try {

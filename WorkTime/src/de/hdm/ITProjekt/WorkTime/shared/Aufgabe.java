@@ -3,7 +3,7 @@ package de.hdm.ITProjekt.WorkTime.shared;
 import java.util.*;
 
 
-public class aufgaben {
+public class Aufgabe {
 
 	private String startDatum;
 	private String endDatum;;
@@ -15,7 +15,7 @@ public class aufgaben {
 	private int aufgabenID;
 	private int userID;
 	
-	public aufgaben (String startDatum, String endDatum, String titel, String beschreibung, int arbeitszeit, int status, int prio, int userID)
+	public Aufgabe (String startDatum, String endDatum, String titel, String beschreibung, int arbeitszeit, int status, int prio, int userID)
 	{
 		this.startDatum = startDatum;
 		this.endDatum = endDatum;
@@ -24,7 +24,7 @@ public class aufgaben {
 		this.arbeitszeit = arbeitszeit;
 		this.status = status;
 		this.prio = prio;
-		this.userID = userID;
+		this.userID = userID; // Als Setter
 	}
 	
 	public String getStartDatum () {
