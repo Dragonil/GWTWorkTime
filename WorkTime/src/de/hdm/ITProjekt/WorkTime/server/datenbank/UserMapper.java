@@ -90,4 +90,17 @@ public class UserMapper {
 
 	}
 
+	public static void insert(User user) {
+		Connection con = DBConnection.connection();
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate("INSERT INTO User(id, email, name, passwort, typ, vorname, letzterLogin) VALUES ("
+					+ user.getId() + user.getEmail() + user.getName() + user.getPasswort() + user.getTyp()
+					+ user.getVorname() + user.getLetzterLogin() + ")");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 }
