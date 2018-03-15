@@ -125,7 +125,7 @@ public class NotizMapper {
 		      Statement stmt = con.createStatement();
 		      ResultSet rs = stmt
 		          .executeQuery("SELECT id, datum, inhalt, farbe FROM notiz "
-		              + "WHERE aufgabeID=" + a.getID() + "ORDER BY datum");
+		              + "WHERE aufgabeID=" + a.getId() + "ORDER BY datum");
 
 		      if (rs.next()) {
 		        Notiz c = new Notiz();

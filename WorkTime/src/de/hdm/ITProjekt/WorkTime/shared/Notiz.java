@@ -2,6 +2,8 @@ package de.hdm.ITProjekt.WorkTime.shared;
 
 import java.sql.Date;
 
+import de.hdm.ITProjekt.WorkTime.shared.bo.BusinessObject;
+
 public class Notiz extends BusinessObject{
 	
 	private int id;
