@@ -7,6 +7,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.ITProjekt.WorkTime.shared.bo.Aufgabe;
 import de.hdm.ITProjekt.WorkTime.shared.bo.User;
+import package de.hdm.ITProjekt.WorkTime.DB.AufgabeMapper;
 
 public class AufgabenAdministrationImpl extends RemoteServiceServlet
 implements AufgabenAdministration {
@@ -24,52 +25,23 @@ implements AufgabenAdministration {
 	  }
 
 	  @Override
-	public void init() throws IllegalArgumentException {
+	  public void init() throws IllegalArgumentException {
 	  
-	    this.aMapper = AufgabeMapper.
-	    this.aMapper = AccountMapper.accountMapper();
-	    this.tMapper = TransactionMapper.transactionMapper();
-	  }
+	    this.aMapper = AufgabeMapper.aufgabeMapper();
+	    this.nMapper = NotizMapper.notizMapper();
+	    
+	  
+	 }
 
-	  /*
-	   * ***************************************************************************
-	   * ABSCHNITT, Ende: Initialisierung
-	   * ***************************************************************************
-	   */
-
-	  /*
-	   * ***************************************************************************
-	   * ABSCHNITT, Beginn: Methoden für Customer-Objekte
-	   * ***************************************************************************
-	   */
-	  /**
-	   * <p>
-	   * Anlegen eines neuen Kunden. Dies führt implizit zu einem Speichern des
-	   * neuen Kunden in der Datenbank.
-	   * </p>
-	   * 
-	   * <p>
-	   * <b>HINWEIS:</b> Änderungen an Customer-Objekten müssen stets durch Aufruf
-	   * von {@link #save(Customer c)} in die Datenbank transferiert werden.
-	   * </p>
-	   * 
-	   * @see save(Customer c)
-	   */
 	  @Override
-	public Customer createCustomer(String first, String last)
-	      throws IllegalArgumentException {
-	    Customer c = new Customer();
-	    c.setFirstName(first);
-	    c.setLastName(last);
+	  public User createUser(String vorname, String nachname) throws IllegalArgumentException {
+	    User u = new User();
+	    u.setFirstName(vorname);
+	    u.setLastName(nachname);
 
-	    /*
-	     * Setzen einer vorläufigen Kundennr. Der insert-Aufruf liefert dann ein
-	     * Objekt, dessen Nummer mit der Datenbank konsistent ist.
-	     */
 	    c.setId(1);
 
-	    // Objekt in der DB speichern.
-	    return this.cMapper.insert(c);
+	    return this.uMapper.insert(c);
 	  }
 
 	  /**

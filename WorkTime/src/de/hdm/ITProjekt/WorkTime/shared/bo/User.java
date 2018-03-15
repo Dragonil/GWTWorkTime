@@ -18,6 +18,10 @@ public class User extends BusinessObject {
 	
 	private int typ;
 	
+	public User() {
+		
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
