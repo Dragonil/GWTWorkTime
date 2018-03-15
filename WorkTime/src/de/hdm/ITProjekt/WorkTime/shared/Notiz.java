@@ -43,26 +43,39 @@ public class Notiz extends BusinessObject{
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getInhalt() {
 		return inhalt;
 	}
+	
 	public void setInhalt(String inhalt) {
 		this.inhalt = inhalt;
 	}
+	
 	public Date getDatum() {
 		return datum;
 	}
+	
 	public void setDatum(Date datum) {
 		this.datum = datum;
 	}
+	
 	public String getFarbe() {
 		return farbe;
 	}
+	
 	public void setFarbe(String farbe) {
 		this.farbe = farbe;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Notiz [id=" + id + ", inhalt=" + inhalt + ", datum=" + datum + ", farbe=" + farbe + "]";
 	}
 	
 	

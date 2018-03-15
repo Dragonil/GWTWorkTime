@@ -20,8 +20,16 @@ public class Aufgabe extends BusinessObject{
 	public Aufgabe() {
 		super();
 	}
+		
 	
-	
+	public Aufgabe(int id, String beschreibung, String titel) {
+		super();
+		this.id = id;
+		this.beschreibung = beschreibung;
+		this.titel = titel;
+	}
+
+
 	public Aufgabe(int id, String beschreibung, String titel, Date startDatum, Date endDatum) {
 		super();
 		this.id = id;
@@ -96,6 +104,16 @@ public class Aufgabe extends BusinessObject{
 	public void setPrio(int prio) {
 		this.prio = prio;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Aufgabe [id=" + id + ", beschreibung=" + beschreibung + ", titel=" + titel + ", startDatum="
+				+ startDatum + ", endDatum=" + endDatum + ", status=" + status + ", arbeitszeit=" + arbeitszeit
+				+ ", prio=" + prio + "]";
+	}
+	
+	
 	
 	
 	
