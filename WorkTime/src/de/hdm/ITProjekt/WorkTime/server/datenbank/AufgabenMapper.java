@@ -85,7 +85,7 @@ public class AufgabenMapper {
 			e.printStackTrace();
 		}
 	}
-}
+
 
 public static void update (Aufgabe a)
 {
@@ -105,5 +105,6 @@ public static void update (Aufgabe a)
 	}
 	catch (SQLException e) {
 		e.printStackTrace();
+		}
 	}
 }
