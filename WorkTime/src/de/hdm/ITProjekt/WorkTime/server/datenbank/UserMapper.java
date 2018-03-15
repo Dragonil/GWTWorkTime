@@ -1,6 +1,7 @@
 package de.hdm.ITProjekt.WorkTime.server.datenbank;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -110,7 +111,7 @@ public class UserMapper {
 
 	}
 
-	public static void deleteUser(User user) {
+	public static void delete(User user) {
 		delete(user.getId());
 	}
 
@@ -126,5 +127,20 @@ public class UserMapper {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static void update(User user) {
+		Connection con = DBConnection.connection();
+		try {
+			PreparedStatement stmt = con.prepareStatement("UPDATE user (name, email, passwort, typ, vorname) VALUES (?,?,?,?,?)");
+			stmt.setString(1, user.getName());
+			stmt.setString(2, user.getEmail());
+			stmt.setString(3, user.getPasswort());
+			stmt.setInt(4, user.getTyp());
+			stmt.setString(5, user.getVorname());
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
