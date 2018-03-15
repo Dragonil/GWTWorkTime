@@ -65,4 +65,45 @@ public class AufgabenMapper {
 		return output;
 
 	}
+	public static void delete (Aufgabe a)
+	{
+		Connection con = DBConnection.connection();
+		
+		try {
+			PreparedStatement stmt = con.prepareStatement("DELETE from Aufgabe (beschreibung, titel, startDatum, endDatum, status, arbeitszeit, prio, userID) VALUES(?,?,?,?,?,?,?,?)");
+			stmt.setString(1, a.getBeschreibung());
+			stmt.setString(2, a.getTitel());
+			stmt.setString(3, a.getStartDatum());
+			stmt.setString(4, a.getEndDatum());
+			stmt.setInt(5, a.getStatus());
+			stmt.setInt(6, a.getArbeitszeit());
+			stmt.setInt(7, a.getPrio());
+			stmt.setInt(8, a.getUserID());
+			stmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+public static void update (Aufgabe a)
+{
+	Connection con = DBConnection.connection();
+	
+	try {
+		PreparedStatement stmt = con.prepareStatement("UPDATE Aufgabe (beschreibung, titel, startDatum, endDatum, status, arbeitszeit, prio, userID) VALUES(?,?,?,?,?,?,?,?)");
+		stmt.setString(1, a.getBeschreibung());
+		stmt.setString(2, a.getTitel());
+		stmt.setString(3, a.getStartDatum());
+		stmt.setString(4, a.getEndDatum());
+		stmt.setInt(5, a.getStatus());
+		stmt.setInt(6, a.getArbeitszeit());
+		stmt.setInt(7, a.getPrio());
+		stmt.setInt(8, a.getUserID());
+		stmt.executeUpdate();
+	}
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
 }
