@@ -13,6 +13,8 @@ import de.hdm.ITProjekt.WorkTime.shared.bo.BusinessObject;
 
 public class AufgabeMapper {
 
+	
+	
 	private static UserMapper aufgabeMapper = null;
 
 	
