@@ -84,4 +84,5 @@ public class AufgabenMapper {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
 }
