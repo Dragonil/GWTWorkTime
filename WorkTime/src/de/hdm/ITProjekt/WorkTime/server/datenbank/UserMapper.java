@@ -38,7 +38,7 @@ public class UserMapper {
 		return result;
 	}
 
-	public static User finByEmail(String email) {
+	public static User findByEmail(String email) {
 		Connection con = DBConnection.connection();
 		User u = null;
 		try {
@@ -110,7 +110,7 @@ public class UserMapper {
 
 	}
 
-	public static void deleteUser(User user) {
+	public static void delete(User user) {
 		delete(user.getId());
 	}
 
