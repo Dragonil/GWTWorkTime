@@ -5,16 +5,16 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets -->
+  <!-- Servlets 
   <servlet>
-    <servlet-name>ServletName</servlet-name>
-    <servlet-class>de.hdm.ITProjekt.WorkTime.server.JavaServerKlassenName</servlet-class>
+    <servlet-name>login</servlet-name>
+    <servlet-class>de.hdm.ITProjekt.WorkTime.server.LoginService</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>ServletName</servlet-name>
-    <url-pattern>/worktime/JavaServiceKlassenPfad</url-pattern>
-  </servlet-mapping>
+    <servlet-name>login</servlet-name>
+    <url-pattern>/worktime/loginsevice</url-pattern>
+  </servlet-mapping> -->
   
   <!-- Default page to serve -->
   <welcome-file-list>
