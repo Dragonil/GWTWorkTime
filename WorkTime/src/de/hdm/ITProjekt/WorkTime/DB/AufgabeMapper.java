@@ -1,7 +1,5 @@
 package de.hdm.ITProjekt.WorkTime.DB;
 
-package de.hdm.ITProjekt.WorkTime.DB;
-
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,7 +7,9 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.ITProjekt.WorkTime.shared.bo.User;
+import de.hdm.ITProjekt.WorkTime.shared.bo.Aufgabe;
 import de.hdm.ITProjekt.WorkTime.shared.bo.BusinessObject;
+
 
 public class AufgabeMapper {
 
@@ -23,7 +23,6 @@ public class AufgabeMapper {
 		if (aufgabeMapper == null) {
 			aufgabeMapper = new AufgabeMapper();
 		}
-
 		return aufgabeMapper;
 	}
 	
