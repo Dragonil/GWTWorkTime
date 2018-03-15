@@ -1,6 +1,7 @@
 
 public class AufgabenAdministration {
 
+	
 	Aufgabe findByKey(int id);
 	
 	Vector<Aufgabe> findAll();

@@ -2,6 +2,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class AufgabenAdministrationAsync {
 
+	
 	void findByKey(int id, AsyncCallback <Aufgabe> callback);
 	
 	void findAll(AsyncCallback <Vector<Aufgabe>> callback);
