@@ -43,7 +43,7 @@ public class UserMapper {
 		User u = null;
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT email FROM User" + email);
+			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE email =" + email);
 
 			if (rs.next()) {
 				u = new User();
@@ -99,6 +99,20 @@ public class UserMapper {
 					+ user.getVorname() + user.getLetzterLogin() + ")");
 
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void delete(int id) {
+		Connection con = DBConnection.connection();
+		try {
+
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate("DELETE id FROM User WHERE id = " + id);
+
+		} catch (SQLException e) {
+
 			e.printStackTrace();
 		}
 
