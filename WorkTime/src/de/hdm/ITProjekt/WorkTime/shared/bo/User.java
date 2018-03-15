@@ -1,5 +1,7 @@
 package de.hdm.ITProjekt.WorkTime.shared.bo;
 
+import sun.util.calendar.BaseCalendar.Date;
+
 public class User extends BusinessObject {
 
 	private static final long serialVersionUID = 1L;
@@ -7,7 +9,15 @@ public class User extends BusinessObject {
 	private String firstName = "";
 
 	private String lastName = "";
+	
+	private String email = "";
 
+	private String passwort = "";
+	
+	private Date letzterLogin;
+	
+	private int typ;
+	
 	public String getFirstName() {
 		return firstName;
 	}
