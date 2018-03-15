@@ -4,6 +4,8 @@ import java.sql.Date;
 
 public class Notiz extends BusinessObject{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private String inhalt;
 	private Date datum;

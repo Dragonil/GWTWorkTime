@@ -4,6 +4,8 @@ import java.sql.Date;
 
 public class Aufgabe extends BusinessObject{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private String beschreibung;
 	private String titel;
