@@ -1,46 +1,56 @@
 package de.hdm.ITProjekt.WorkTime.client;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Console;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.Panel;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DatePicker;
 
 
 public class WorkTime implements EntryPoint {
 	
-	int currentModule = 1;
-	DateBox date = new DateBox();
+	protected static int currentModule = 1;
+	private static FlowPanel content = new FlowPanel(); // ContentPanel
+	
+	
+	// Aufgaben
+	private static DateBox date = new DateBox();
+	private static TextBox titel = new TextBox();
+	private static TextArea beschreibung = new TextArea();
+	private static ListBox prio = new ListBox();
+	
+	// DialogBox
+	private static DialogBox dialog;
+	private static Button close = new Button("OK");
+	private static VerticalPanel dialogPanel;
 
 	public void onModuleLoad() {
+		update();
+	}
+	
+	public static void update() {
 		
-		
+		RootPanel.get("content").clear();
 		Panel p = null;
 		switch(currentModule){
-		case 1: p = Login(); break;
-		case 2: p = Kanban(); break;
+		case 1: p = Login.getPanel(); break;
+		case 2: p = Dashboard(); break;
+		case 3: p = neueAufgabe(); break;
 		}
 		
 
 		RootPanel.get("content").add(p);
+		//RootPanel.get("content").add(dialog);
 	}
-	
-	public Panel Login(){
+	/*
+	private Panel Login(){
 		VerticalPanel vp = new VerticalPanel();
-		TextBox email = new TextBox();
-		TextBox password = new TextBox();
-		Button login = new Button("Login");
+		
 		
 		login.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent e){
@@ -56,13 +66,11 @@ public class WorkTime implements EntryPoint {
 		vp.add(login);
 		return vp;
 	}
-	
-	public Panel Kanban(){
+	*/
+	private static Panel neueAufgabe(){
 		VerticalPanel vp = new VerticalPanel();
-		TextBox titel = new TextBox();
-		TextArea beschreibung = new TextArea();
 		
-		ListBox prio = new ListBox();
+		
 		prio.addItem("1"); // Sehr Wichtig
 		prio.addItem("2"); // Wichtig
 		prio.addItem("3"); // Unwichtig
@@ -78,19 +86,51 @@ public class WorkTime implements EntryPoint {
 		
 		neu.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent e){
-				Window.alert("Date: "+date.getTextBox().getText());
-				/*
-				DialogBox dialog = new DialogBox();
+				//Window.alert(titel.getText()+ " \n Date: "+date.getTextBox().getText() );
+				dialog = new DialogBox();
+				dialogPanel = new VerticalPanel();
+				
 				dialog.setAnimationEnabled(true);
-				dialog.add(new HTML("<h1>"+titel.getText()+"</h1>"));
-				dialog.add(new HTML("<div>"+beschreibung.getText()+"<br />"));
-				//dialog.add(new HTML(date.getLastDate()+"<br />"));
-				//dialog.add(new HTML("Prio: " +prio.getSelectedItemText()+"<br /></div>"));
-				vp.add(dialog);
-				*/
+				
+				
+				dialogPanel.add(new HTML("<h1>Neue Aufgabe</h1>"));
+				dialogPanel.add(new HTML("<h2>"+titel.getText()+"</h2><div>"+beschreibung.getText()+"<br />"+
+								date.getTextBox().getText()+"<br /> Prio: "+ 
+								prio.getSelectedItemText()+"<br /></div><br />"));
+				dialogPanel.add(close);
+				dialog.add(dialogPanel);
+				dialog.show();
+
+				close.addClickHandler(new ClickHandler(){
+					public void onClick(ClickEvent e){
+						dialog.hide();
+					}
+				});
 			}
 		});
 		
+		return vp;
+	}
+	
+	private static Panel Dashboard(){
+		VerticalPanel vp = new VerticalPanel();
+		HorizontalPanel hp = new HorizontalPanel();
+		FocusPanel nav[] = {new FocusPanel(new HTML("NaviBox1")), new FocusPanel(new HTML("NaviBox2")), new FocusPanel(new HTML("NaviBox3"))};
+
+		hp.setStyleName("naviDiv");
+		for(FocusPanel p : nav) {
+			p.setStyleName("naviElement");
+			p.addClickHandler(new ClickHandler(){
+				public void onClick(ClickEvent e){
+					Window.alert(e.toString());
+				}
+			});
+			
+			hp.add(p);
+		}
+		
+		vp.add(hp);
+		vp.add(content);
 		return vp;
 	}
 }
