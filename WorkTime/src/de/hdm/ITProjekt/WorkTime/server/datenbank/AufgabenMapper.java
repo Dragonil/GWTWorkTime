@@ -47,7 +47,7 @@ public class AufgabenMapper {
 		return aufgabe;
 
 	}
-	public static Vector<Aufgabe> findbyALL (Aufgabe a)
+	public static Vector<Aufgabe> findAll ()
 	{
 		Connection con = DBConnection.connection();
 		Vector<Aufgabe> output = new Vector<Aufgabe>();
