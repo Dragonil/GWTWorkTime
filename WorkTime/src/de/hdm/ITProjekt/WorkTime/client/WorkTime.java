@@ -7,6 +7,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 
 
 
@@ -21,7 +22,7 @@ public class WorkTime implements EntryPoint { // Kanban
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad()  {
-		
+			/*
 		    DockLayoutPanel p = new DockLayoutPanel(Unit.EM);
 		    p.addNorth(new HTML("north"), 2);
 		    p.addSouth(new HTML("south"), 2);
@@ -34,6 +35,9 @@ public class WorkTime implements EntryPoint { // Kanban
 		    // possible size changes.
 		    RootLayoutPanel rp = RootLayoutPanel.get();
 		    rp.add(p);
+		    */
+		
+			RootPanel.get().add(Kanban.getPanel());
 		  }
 		
 	}

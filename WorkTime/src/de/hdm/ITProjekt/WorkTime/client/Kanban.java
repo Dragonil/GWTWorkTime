@@ -19,21 +19,23 @@ import com.google.gwt.user.client.ui.Panel;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class Kanban implements EntryPoint {
+public class Kanban {
 	
-	TextBox titel = new TextBox();
-	TextArea besch = new TextArea();
-	DateBox date = new DateBox();
-	Button senden = new Button("Senden");
-	final FlexTable flexTable = new FlexTable();
+	static TextBox titel = new TextBox();
+	static TextArea besch = new TextArea();
+	static DateBox date = new DateBox();
+	static Button senden = new Button("Senden");
+	static final FlexTable flexTable = new FlexTable();
 	/**
 	 * This is the entry point method.
 	 */
-	public void onModuleLoad() {
+	public static Panel getPanel() {
 	
 	    // Create a Flex Table
 	      
-	      FlexCellFormatter cellFormatter = flexTable.getFlexCellFormatter();
+			
+		
+	      //FlexCellFormatter cellFormatter = flexTable.getFlexCellFormatter();
 	      flexTable.addStyleName("flexTable");
 	      flexTable.setWidth("32em");
 	      flexTable.setCellSpacing(5);
@@ -86,36 +88,39 @@ public class Kanban implements EntryPoint {
 	      
 
 	      // Add the widgets to the root panel.
-	      RootPanel.get().add(neueAufgabe());
-	      RootPanel.get().add(removeRowButton);
-	      RootPanel.get().add(flexTable);
+	      VerticalPanel p = new VerticalPanel();
+	      p.add(neueAufgabe());
+	      p.add(removeRowButton);
+	      p.add(flexTable);
+	      
+	      return p;
 	      
 	   }
 
 	   /**
 	    * Add a row to the flex table.
 	    */
-	   private void addRow(FlexTable flexTable) {
+	   static private void addRow(FlexTable flexTable) {
 	      int numRows = flexTable.getRowCount();
 	      flexTable.setWidget(numRows, 0, new HTML(titel.getText()));
 	      flexTable.setWidget(numRows, 1, new HTML (besch.getText()));
 	      flexTable.setWidget(numRows, 2, new HTML (date.getTextBox().getText()));
-	      flexTable.getFlexCellFormatter().setRowSpan(1, 1,  numRows + 1);
+	      flexTable.getFlexCellFormatter().setRowSpan(1, 3,  numRows + 1);
 	      
 	   }
 
 	   /**
 	    * Remove a row from the flex table.
 	    */
-	   private void removeRow(FlexTable flexTable) {
+	   static private void removeRow(FlexTable flexTable) {
 	      int numRows = flexTable.getRowCount();
 	      if (numRows > 1) {
 	         flexTable.removeRow(numRows - 1);
-	         flexTable.getFlexCellFormatter().setRowSpan(1, 1, numRows - 1);
+	         flexTable.getFlexCellFormatter().setRowSpan(1, 3, numRows - 1);
 	      }
 	   }
 	   
-	   public Panel neueAufgabe() {
+	   static public Panel neueAufgabe() {
 		   Panel p = new VerticalPanel();
 		   
 		   
