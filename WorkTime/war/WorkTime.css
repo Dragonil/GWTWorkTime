@@ -5,7 +5,7 @@
 h1 {
   font-size: 2em;
   font-weight: bold;
-  color: #777777;
+  color: red;
   margin: 40px 0px 70px;
   text-align: center;
 }
@@ -32,3 +32,19 @@ h1 {
 #closeButton {
   margin: 15px 6px 6px;
 }
+
+.naviDiv {
+	hight: 100px;
+	width:100px;
+	background: blue;
+}
+
+.naviElement {
+	width:100vw;
+	background: gray;
+}
+
+h1{
+	color:red;
+}
+

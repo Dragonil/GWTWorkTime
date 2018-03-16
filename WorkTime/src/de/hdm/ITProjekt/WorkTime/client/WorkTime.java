@@ -117,9 +117,10 @@ public class WorkTime implements EntryPoint {
 		HorizontalPanel hp = new HorizontalPanel();
 		FocusPanel nav[] = {new FocusPanel(new HTML("NaviBox1")), new FocusPanel(new HTML("NaviBox2")), new FocusPanel(new HTML("NaviBox3"))};
 
-		hp.setStyleName("naviDiv");
+		hp.addStyleName("naviDiv");
 		for(FocusPanel p : nav) {
-			p.setStyleName("naviElement");
+			
+			p.addStyleName("naviElement");
 			p.addClickHandler(new ClickHandler(){
 				public void onClick(ClickEvent e){
 					Window.alert(e.toString());
@@ -130,6 +131,7 @@ public class WorkTime implements EntryPoint {
 		}
 		
 		vp.add(hp);
+		vp.add(new HTML("<h1>Test</h1>"));
 		vp.add(content);
 		return vp;
 	}
