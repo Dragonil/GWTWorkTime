@@ -14,7 +14,7 @@ import com.google.gwt.user.datepicker.client.DatePicker;
 
 public class WorkTime implements EntryPoint {
 	
-	protected static int currentModule = 1;
+	protected static int currentModule = 3;
 	private static FlowPanel content = new FlowPanel(); // ContentPanel
 	
 	
