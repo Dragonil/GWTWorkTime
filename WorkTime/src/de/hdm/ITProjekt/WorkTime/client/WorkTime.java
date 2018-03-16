@@ -38,7 +38,7 @@ public class WorkTime implements EntryPoint {
 		RootPanel.get("content").clear();
 		Panel p = null;
 		switch(currentModule){
-		case 1: p = Login.getPanel(); break;
+		//case 1: p = Login.getPanel(); break;
 		case 2: p = Dashboard(); break;
 		case 3: p = Kanban.getPanel(); break;
 		}
