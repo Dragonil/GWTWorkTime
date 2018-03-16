@@ -14,7 +14,7 @@ import com.google.gwt.user.datepicker.client.DatePicker;
 
 public class WorkTime implements EntryPoint {
 	
-	protected static int currentModule = 3;
+	protected static int currentModule = 1;
 	private static FlowPanel content = new FlowPanel(); // ContentPanel
 	
 	
@@ -38,8 +38,8 @@ public class WorkTime implements EntryPoint {
 		RootPanel.get("content").clear();
 		Panel p = null;
 		switch(currentModule){
-		//case 1: p = Login.getPanel(); break;
-		case 2: p = Dashboard(); break;
+		case 1: p = Login.getPanel(); break;
+		case 2: p = Kanban.getPanel(); break;
 		case 3: p = Kanban.getPanel(); break;
 		}
 		
