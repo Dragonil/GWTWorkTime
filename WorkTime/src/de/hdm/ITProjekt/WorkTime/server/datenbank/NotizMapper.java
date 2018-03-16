@@ -9,6 +9,7 @@ import java.util.Vector;
 import de.hdm.ITProjekt.WorkTime.shared.Notiz;
 
 public class NotizMapper {
+	
 
 	public static void Notizanlegen(Notiz notiz) {
 
@@ -49,20 +50,22 @@ public static void Notizloeschen(Notiz notiz) {
 			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM notiz " + "WHERE id = " + id);
 			if (rs.next()) {
-				Notiz n = new Notiz(rs.getString("inhalt"),
+				Notiz n = new Notiz(rs.getString("inhalt"),//mit get hol ich daten aus klasse und schrieb in db
 						rs.getString("farbe"));
 				n.setId(rs.getInt("id"));
-				n.setDatum(rs.getDate("datum"));
+				n.setDatum(rs.getDate("datum"));//mit set hol ich Daten aus db und schreib sie in die Klassen
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return notiz;
 	}
+	
+	
 	public static Vector<Notiz> findAll() {
 		
 		Connection con = DBConnection.connection();
-		Vector<Notiz> result = new Vector<Notiz>();
+		Vector<Notiz> result = new Vector<Notiz>();//Vector, weil alle Daten zurück will die werden im Vector abgespeichert
 		
 		try {
 			
@@ -76,8 +79,9 @@ public static void Notizloeschen(Notiz notiz) {
 			Notiz n = new Notiz(rs.getString("inhalt"), 
 					rs.getString("farbe"));
 					n.setId(rs.getInt("id"));
+					n.setDatum(rs.getDate("datum"));
 			
-			result.addElement(n);
+			result.addElement(n);//Notiz wird in Vector geschrieben
 			}
 			
 			} catch (SQLException e2) {
