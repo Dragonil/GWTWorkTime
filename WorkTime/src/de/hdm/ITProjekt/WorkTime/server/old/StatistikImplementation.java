@@ -1,7 +1,8 @@
-package de.hdm.ITProjekt.WorkTime.server.datenbank;
+package de.hdm.ITProjekt.WorkTime.server.old;
 
 import java.util.Vector;
 
+import de.hdm.ITProjekt.WorkTime.server.datenbank.NotizMapper;
 import de.hdm.ITProjekt.WorkTime.shared.Notiz;
 
 public class StatistikImplementation {//muss jetzt Mapper implementiert werden in async interface
@@ -9,7 +10,7 @@ public class StatistikImplementation {//muss jetzt Mapper implementiert werden i
 
 	public Vector<Notiz> findAll(){
 
-	        return NotizMapper.findAll();//will Rückgabewert
+	        return NotizMapper.findAll();//will Rï¿½ckgabewert
 	    }
 
         public Notiz findById(int id) {
@@ -19,12 +20,12 @@ public class StatistikImplementation {//muss jetzt Mapper implementiert werden i
         
         public void Notizloeschen(Notiz notiz) {
 
-        	NotizMapper.Notizloeschen(notiz); //Void deshalb kein Rückgabewert
+        	NotizMapper.Notizloeschen(notiz); //Void deshalb kein Rï¿½ckgabewert
         	    
         }
     	public void Notizanlegen(Notiz notiz){
 
-	        NotizMapper.Notizanlegen(notiz);//Void deshalb kein rückgabewert
+	        NotizMapper.Notizanlegen(notiz);//Void deshalb kein rï¿½ckgabewert
 	    }
     
 }

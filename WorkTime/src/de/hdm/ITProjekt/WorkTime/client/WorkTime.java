@@ -14,7 +14,7 @@ import com.google.gwt.user.datepicker.client.DatePicker;
 
 public class WorkTime implements EntryPoint {
 	
-	protected static int currentModule = 1;
+	protected static int currentModule = 4;
 	private static FlowPanel content = new FlowPanel(); // ContentPanel
 	
 	
@@ -39,8 +39,9 @@ public class WorkTime implements EntryPoint {
 		Panel p = null;
 		switch(currentModule){
 		case 1: p = Login.getPanel(); break;
+		case 4: p = Dashboard(); break;
 		case 2: p = Kanban.getPanel(); break;
-		case 3: p = Kanban.getPanel(); break;
+		case 3: p = Statistik.getPanel(); break;
 		}
 		
 
@@ -79,7 +80,8 @@ public class WorkTime implements EntryPoint {
 			p.addStyleName("naviElement");
 			p.addClickHandler(new ClickHandler(){
 				public void onClick(ClickEvent e){
-					Window.alert(e.toString());
+					currentModule--;
+					update();
 				}
 			});
 			
@@ -91,4 +93,5 @@ public class WorkTime implements EntryPoint {
 		vp.add(content);
 		return vp;
 	}
+	
 }

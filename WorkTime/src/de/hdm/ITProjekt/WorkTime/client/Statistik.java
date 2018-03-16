@@ -26,15 +26,17 @@ import com.google.gwt.user.client.ui.*;
 
 public class Statistik {
 	
-	private VerticalPanel HauptPanel = new VerticalPanel();
-	private FlexTable fp = new FlexTable();
-	private Button Button = new Button ("aktualisieren");
-	private Label Label = new Label ();
-	//Daten in Tabelle einfügen
+	private static VerticalPanel HauptPanel = new VerticalPanel();
+	private static FlexTable fp = new FlexTable();
+	private static Button Button = new Button ("aktualisieren");
+	private static Label Label = new Label ();
+	//Daten in Tabelle einfï¿½gen
 	//private ArrayList<String> stocks = new ArrayList<String>();
 	
-	public void onModuleLoad() {
+	public static Panel getPanel() {
 		//Beschriftung der Tabelle
+		
+		
 				fp.setText(0, 0, "Offene Aufgaben");
 				fp.setText(0, 1, "ben\\u00F6tigte Arbeitszeit");
 				fp.setText(1, 0, "1. Aufgabe");
@@ -42,7 +44,7 @@ public class Statistik {
 				fp.setText(2, 0, "2. Aufgabe");
 				fp.setText(2, 1, "2. Arbeitszeit");
 				
-				//Tabelle Maße
+				//Tabelle Maï¿½e
 			   //  FlexCellFormatter cellFormatter = fp.getFlexCellFormatter();
 			      fp.addStyleName("flexTable");//deshalb in css .flexTable
 			      fp.setWidth("32em"); //Breite der Tabelle
@@ -90,7 +92,7 @@ public class Statistik {
 			      });*/
 				
 				//RootPanel-> HTML-Seite?
-				RootPanel.get("content").add(HauptPanel);
+				
 				
 				//Label-Text (unten)
 				Label.setText("");
@@ -99,6 +101,8 @@ public class Statistik {
 				HauptPanel.add(fp);
 				HauptPanel.add(Button);
 				HauptPanel.add(Label);
+				
+				return HauptPanel;
 				
 	}
 	
