@@ -22,6 +22,13 @@ public class User extends BusinessObject {
 		
 	}
 	
+	public User (String firstName, String lastName, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName; 
+		this.email = email;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}

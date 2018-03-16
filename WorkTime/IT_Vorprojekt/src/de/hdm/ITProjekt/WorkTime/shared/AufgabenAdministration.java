@@ -6,6 +6,8 @@ public class AufgabenAdministration {
 	
 	Vector<Aufgabe> findAll();
 	
+	Aufgabe createAufgabe(int id, String beschreibung, String titel);
+	
 	Vector<User> findByTitel(String titel);
 	
 	Aufgabe insert(Aufgabe a);
