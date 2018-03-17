@@ -14,8 +14,8 @@ import com.google.gwt.user.datepicker.client.DatePicker;
 
 public class WorkTime implements EntryPoint {
 	
-	protected static int currentModule = 4;
-	private static FlowPanel content = new FlowPanel(); // ContentPanel
+	protected static int activeModule = 1;
+	//private static Panel content = new FlowPanel(); // ContentPanel
 	
 	
 	// Aufgaben
@@ -35,13 +35,21 @@ public class WorkTime implements EntryPoint {
 	
 	public static void update() {
 		
+		//Window.alert("ActiveModule: "+activeModule);
+		
 		RootPanel.get("content").clear();
 		Panel p = null;
-		switch(currentModule){
-		case 1: p = Login.getPanel(); break;
-		case 4: p = Dashboard(); break;
-		case 2: p = Kanban.getPanel(); break;
-		case 3: p = Statistik.getPanel(); break;
+		switch(activeModule){
+		case 1: 	p = Login.getPanel(); break;
+		case 2: {	p = Dashboard(Kanban.getPanel()); 
+					//content = Kanban.getPanel(); 
+					break;
+				}
+		case 3: {	p = Dashboard(Statistik.getPanel());
+					//content = Statistik.getPanel();
+					break;
+				}
+		case 4: p = Dashboard(new VerticalPanel());
 		}
 		
 
@@ -69,29 +77,32 @@ public class WorkTime implements EntryPoint {
 	}
 	*/
 	
-	private static Panel Dashboard(){
+	private static Panel Dashboard(Panel content){
+		DockPanel dp = new DockPanel();
 		VerticalPanel vp = new VerticalPanel();
 		HorizontalPanel hp = new HorizontalPanel();
-		FocusPanel nav[] = {new FocusPanel(new HTML("NaviBox1")), new FocusPanel(new HTML("NaviBox2")), new FocusPanel(new HTML("NaviBox3"))};
+		FocusPanel nav[] = {new FocusPanel(new HTML("Kanban")), new FocusPanel(new HTML("Statistik")), new FocusPanel(new HTML("Profil"))};
 
-		hp.addStyleName("naviDiv");
-		for(FocusPanel p : nav) {
-			
-			p.addStyleName("naviElement");
-			p.addClickHandler(new ClickHandler(){
+		hp.setStyleName("naviDiv");
+		
+		
+		for(int i=0;i<nav.length; i++) {
+			nav[i].setStyleName("naviElement");
+			final int pos = i +2;
+			nav[i].addClickHandler(new ClickHandler(){
 				public void onClick(ClickEvent e){
-					currentModule--;
+					activeModule = pos;
 					update();
 				}
 			});
 			
-			hp.add(p);
+			hp.add(nav[i]);
 		}
-		
-		vp.add(hp);
-		vp.add(new HTML("<h1>Test</h1>"));
+		vp.setStyleName("Center");
 		vp.add(content);
-		return vp;
+		dp.add(hp, DockPanel.NORTH);
+		dp.add(vp, DockPanel.CENTER);
+		return dp;
 	}
 	
 }

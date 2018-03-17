@@ -29,7 +29,7 @@ public class Login {
 	public static Panel getPanel(){
 		
 		VerticalPanel vp = new VerticalPanel();
-		
+		vp.setStyleName("Center");
 		
 		login.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent e){
@@ -48,7 +48,7 @@ public class Login {
 	
 	private static void checkData(){
 		if(passwort.getText() == "1234"){
-			WorkTime.currentModule++;
+			WorkTime.activeModule = 2;
 			WorkTime.update();
 		}else{
 			Window.alert("Falsches Passwort");

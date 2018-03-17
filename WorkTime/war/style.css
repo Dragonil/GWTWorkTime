@@ -2,6 +2,12 @@
 
 
 /** Example rules used by the template application (remove for your app) */
+body{
+	margin: 0 auto;
+	height: 100vh;
+	width: 100vw;
+}
+
 h1 {
   font-size: 2em;
   font-weight: bold;
@@ -31,7 +37,6 @@ h1 {
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
   margin: 15px 6px 6px;
-  body {
    text-align: center;
    font-family: verdana, sans-serif;
 }
@@ -54,4 +59,28 @@ h1 {
 
 .fixedWidthButton {
    width: 150px;
+}
+
+.naviDiv{
+	width: 100vw;
+	padding-left: 5vw;
+	margin-bottom: 100px;
+}
+
+.naviElement{
+	Text-align: center;
+	padding-Top:15px;
+	height: 35px;
+	width:20vw;
+	border: solid black 1px;
+}
+
+.Center{
+	
+    vertical-align: middle;
+	margin: auto;
+}
+
+.form{
+	padding-right: 50px;
 }

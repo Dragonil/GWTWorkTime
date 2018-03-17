@@ -88,10 +88,10 @@ public class Kanban {
 	      
 
 	      // Add the widgets to the root panel.
-	      VerticalPanel p = new VerticalPanel();
-	      p.add(neueAufgabe());
-	      p.add(removeRowButton);
-	      p.add(flexTable);
+	      DockPanel p = new DockPanel();
+	      p.add(neueAufgabe(), DockPanel.WEST);
+	      p.add(removeRowButton, DockPanel.SOUTH);
+	      p.add(flexTable, DockPanel.CENTER);
 	      
 	      return p;
 	      
@@ -105,7 +105,7 @@ public class Kanban {
 	      flexTable.setWidget(numRows, 0, new HTML(titel.getText()));
 	      flexTable.setWidget(numRows, 1, new HTML (besch.getText()));
 	      flexTable.setWidget(numRows, 2, new HTML (date.getTextBox().getText()));
-	      flexTable.getFlexCellFormatter().setRowSpan(1, 3,  numRows + 1);
+	      //flexTable.getFlexCellFormatter().setRowSpan(1, 3,  numRows + 1);
 	      
 	   }
 
@@ -116,7 +116,7 @@ public class Kanban {
 	      int numRows = flexTable.getRowCount();
 	      if (numRows > 1) {
 	         flexTable.removeRow(numRows - 1);
-	         flexTable.getFlexCellFormatter().setRowSpan(1, 3, numRows - 1);
+	         //flexTable.getFlexCellFormatter().setRowSpan(1, 3, numRows - 1);
 	      }
 	   }
 	   
@@ -131,11 +131,14 @@ public class Kanban {
 				   addRow(flexTable);
 			   }
 		   });
-		   
+		   p.add(new HTML("<label>Titel:</label>"));
 		   p.add(titel);
+		   p.add(new HTML("<label>Beschreibung:</label>"));
 		   p.add(besch);
+		   p.add(new HTML("<label>Enddatum:</label>"));
 		   p.add(date);
 		   p.add(senden);
+		   p.setStyleName("form");
 		   return p;
 	   }
 	   
