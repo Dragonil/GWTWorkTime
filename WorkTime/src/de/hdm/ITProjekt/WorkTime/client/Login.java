@@ -28,6 +28,10 @@ public class Login {
 
 	public static Panel getPanel(){
 		
+		
+		//Debug
+		passwort.setText("1234");
+		
 		VerticalPanel vp = new VerticalPanel();
 		vp.setStyleName("Center");
 		

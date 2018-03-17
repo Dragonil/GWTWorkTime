@@ -24,6 +24,7 @@ public class Kanban {
 	static TextBox titel = new TextBox();
 	static TextArea besch = new TextArea();
 	static DateBox date = new DateBox();
+	static ListBox prio = new ListBox();
 	static Button senden = new Button("Senden");
 	static final FlexTable flexTable = new FlexTable();
 	/**
@@ -53,7 +54,8 @@ public class Kanban {
 	      flexTable.setHTML(0, 0, "Titel");
 	      flexTable.setHTML(0, 1, "Beschreibung");
 	      flexTable.setHTML(0, 2, "Datum");
-
+	      flexTable.setHTML(0, 3, "Priorität");
+	      
 	      // Add a button that will add more rows to the table
 	      //Button addRowButton = new Button("Add a Row"); 
 	      /*addRowButton.addClickHandler(new ClickHandler() {
@@ -105,6 +107,7 @@ public class Kanban {
 	      flexTable.setWidget(numRows, 0, new HTML(titel.getText()));
 	      flexTable.setWidget(numRows, 1, new HTML (besch.getText()));
 	      flexTable.setWidget(numRows, 2, new HTML (date.getTextBox().getText()));
+	      flexTable.setWidget(numRows, 3, new HTML (prio.getSelectedItemText()));
 	      //flexTable.getFlexCellFormatter().setRowSpan(1, 3,  numRows + 1);
 	      
 	   }
@@ -122,13 +125,16 @@ public class Kanban {
 	   
 	   static public Panel neueAufgabe() {
 		   Panel p = new VerticalPanel();
-		   
+
+			prio.addItem("Sehr Wichtig"); // Sehr Wichtig
+			prio.addItem("Wichtig"); // Wichtig
+			prio.addItem("Unwichtig"); // Unwichtig
 		   
 		   
 		   senden.addClickHandler(new ClickHandler () { 
 			   public void onClick (ClickEvent e ) {
-				   
 				   addRow(flexTable);
+				   clearText();
 			   }
 		   });
 		   p.add(new HTML("<label>Titel:</label>"));
@@ -137,9 +143,17 @@ public class Kanban {
 		   p.add(besch);
 		   p.add(new HTML("<label>Enddatum:</label>"));
 		   p.add(date);
+		   p.add(new HTML("<label>Priorität:</label>"));
+		   p.add(prio);
 		   p.add(senden);
 		   p.setStyleName("form");
 		   return p;
+	   }
+	   
+	   public static void clearText(){
+		   titel.setText("");
+		   besch.setText("");
+		   date.getTextBox().setText("");
 	   }
 	   
 		    
