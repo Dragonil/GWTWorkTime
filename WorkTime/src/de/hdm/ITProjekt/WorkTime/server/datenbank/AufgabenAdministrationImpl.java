@@ -23,7 +23,7 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
 	  private UserMapper uMapper = null;
 	 
 	  
-	  public AufgabenAdministrationImpl() throws IllegalArgumentException {
+	  public AufgabenAdministrationImpl(){
 	   
 	  }
 	  
@@ -32,7 +32,7 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
 	   */
 
 	  @Override
-	  public void init() throws IllegalArgumentException {
+	  public void init() {
 	  
 	    this.aMapper = AufgabeMapper.aufgabeMapper();
 	    this.nMapper = NotizMapper.notizMapper();  
@@ -44,7 +44,7 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
  	  
 	  /* Neuen Nutzer im System anlegen */
 
-	  public User createUser(String vorname, String nachname, String email) throws IllegalArgumentException {
+	  public User createUser(String vorname, String nachname, String email) {
 		  User pers = uMapper.findByEmail(email);
 			if (pers != null) {
 				return pers;
@@ -59,7 +59,7 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
 	  
 	  
 	  @Override
-		public User createUser(String vorname, String nachname) throws IllegalArgumentException {
+		public User createUser(String vorname, String nachname)  {
 			User u = null;
 			if (vorname != null && nachname != null) {
 				u = new User();
@@ -73,7 +73,7 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
 	  
 	  /* Nutzer speichern */
 	  
-	  public void save(User u) throws IllegalArgumentException {
+	  public void save(User u) {
 		    uMapper.update(u);
 	  }
 	  
@@ -96,7 +96,7 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
 	  /* Nutzer aus dem System löschen */
 	  
 	 
-	public void delete(User u) throws IllegalArgumentException {
+	public void delete(User u)  {
 		
 		    Vector<Aufgabe> tasks = this.getAllTasks();
 
@@ -119,7 +119,7 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
 		return this.findAllTasks();
 	}
 
-	public Aufgabe createAufgabe(String beschreibung, String titel) throws IllegalArgumentException {
+	public Aufgabe createAufgabe(String beschreibung, String titel) {
 			
 		Aufgabe a = null;
 			if (titel != null && beschreibung != null) {
@@ -131,30 +131,30 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
 			return a;
 		}
 	  
-	public Vector <Aufgabe> findAllTasks() throws IllegalArgumentException {
+	public Vector <Aufgabe> findAllTasks()  {
 			return this.aMapper.findAll();
 		}
 
-	public Vector <Aufgabe> findAllLatestFirst() throws IllegalArgumentException {
+	public Vector <Aufgabe> findAllLatestFirst()  {
 			Vector<Aufgabe> tasks = this.aMapper.findAll();
 			tasks.sort(null);
 			return tasks;
 		}
 
-	public Aufgabe findAufgabeById(int id) throws IllegalArgumentException{
+	public Aufgabe findAufgabeById(int id) {
 			return aMapper.findByKey(id);
 		}
 	
-	public Aufgabe findByKey(int id) throws IllegalArgumentException {
+	public Aufgabe findByKey(int id)  {
 		return aMapper.findByKey(id);
 	}
 	  
 	
-	public void save(Aufgabe a) throws IllegalArgumentException {
+	public void save(Aufgabe a)  {
 	    aMapper.update(a);
 	  }
 	
-	public void delete(Aufgabe a) throws IllegalArgumentException {
+	public void delete(Aufgabe a) {
 	    Vector<Aufgabe> tasks = this.getAllTasks();    
 	    Vector<Notiz> notes = new Vector<Notiz>();
 
@@ -164,96 +164,87 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
 	    	if(task.getNotizen() != null) {
 	    	notes = task.getNotizen();	    	
 	    	
-	    			for(Notiz note : notes)
-	    			this.nMapper.delete(note);
-	    	
-	    	}
-	    	
-	        this.aMapper.delete(a);
+	    			for(Notiz note : notes) {
+	    				
+	    			this.nMapper.delete(note); 
+	    			}  	
 	        
+	              
+	    	} 
+	    	this.aMapper.delete(a);
 	      }
-	      
-	    }
-
-	    // Anschließend Aufgabe entfernen
-	    this.aMapper.delete(a);
+	    	
 	  }
-	
+	}
 	
 	//===Notizen===
 	  
 	   /* Auslesen sämtlicher Notizen einer Aufgabe */
 	
-	  public Vector<Notiz> getAllNotes(Aufgabe a) throws IllegalArgumentException {
+	  public Vector<Notiz> getAllNotes(Aufgabe a){
 	    return this.nMapper.findByTask(a);
 	  }
  
 	  /**
 	   * Auslesen des Notizen mit einer bestimmten Id
 	   */
-	  public Notiz getNotesById(int id) throws IllegalArgumentException {
+	  public Notiz getNotesById(int id){
 		  return nMapper.findByKey(id);
 	  }
 
 	 
-	  public void delete(Notiz note) throws IllegalArgumentException {
+	  public void delete(Notiz note){
 	    this.nMapper.delete(note);
 	  }
 
 
-
 	@Override
-	public Vector<Aufgabe> findAll() throws IllegalArgumentException {
-		return aMapper.findAll();
-	}
-
-	@Override
-	public Aufgabe findByTitel(String titel) throws IllegalArgumentException{
+	public Aufgabe findByTitel(String titel){
 		return aMapper.findByTitel(titel);
 	}
 
 	@Override
-	public Aufgabe insert(Aufgabe a) throws IllegalArgumentException{
+	public Aufgabe insert(Aufgabe a){
 		return aMapper.insert(a);
 	}
 
 	@Override
-	public Aufgabe update(Aufgabe a) throws IllegalArgumentException{
+	public Aufgabe update(Aufgabe a){
 		return aMapper.update(a);
 	}
 
 	@Override
-	public Vector<Notiz> findByDate(Date datum) throws IllegalArgumentException{
+	public Vector<Notiz> findByDate(Date datum) {
 		return nMapper.findByDate(datum);
 	}
 
 	@Override
-	public Vector<Notiz> findByTask(Aufgabe a) throws IllegalArgumentException{
+	public Vector<Notiz> findByTask(Aufgabe a){
 		return nMapper.findByTask(a);
 	}
 
 	@Override
-	public Notiz insert(Notiz c) throws IllegalArgumentException{
+	public Notiz insert(Notiz c) {
 		return nMapper.insert(c);
 	}
 
 	@Override
-	public Notiz update(Notiz c) throws IllegalArgumentException{
+	public Notiz update(Notiz c) {
 		return nMapper.update(c);
 	}
 
 	@Override
-	public Vector <User> findByLastName(String name) throws IllegalArgumentException{
+	public Vector <User> findByLastName(String name){
 		return this.uMapper.findByLastName(name);
 	}
 
 	@Override
-	public User insert(User u) throws IllegalArgumentException{
+	public User insert(User u) {
 		return this.uMapper.insert(u);
 	}
 
 	@Override
-	public User update(User u) throws IllegalArgumentException{
+	public User update(User u) {
 		return this.uMapper.update(u);
 	}
 
@@ -261,7 +252,7 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
 	
 
 	@Override
-	public Notiz createNotiz(String inhalt, Date datum) throws IllegalArgumentException{
+	public Notiz createNotiz(String inhalt, Date datum){
 		Notiz u = null;
 		if (inhalt != null && datum != null) {
 			u = new Notiz();
@@ -272,14 +263,30 @@ public class AufgabenAdministrationImpl extends RemoteServiceServlet implements 
 		return u;
 	}
 
+	
 	@Override
-	public Aufgabe findById(int id) throws IllegalArgumentException{
+	public Aufgabe findTaskById(int id) {
 		return this.aMapper.findByKey(id);
 	}
 
 	@Override
-	public User findByUserId(int id) throws IllegalArgumentException{
+	public Notiz findNoteById(int id) {
+		return this.nMapper.findByKey(id);
+	}
+
+	@Override
+	public Vector<Notiz> findAllNotes() {
+		return this.nMapper.findAll();
+	}
+
+	@Override
+	public User findUserById(int id) {
 		return this.uMapper.findById(id);
+	}
+
+	@Override
+	public Vector<User> findAllUser() {
+		return this.uMapper.findAll();
 	}
 
 	

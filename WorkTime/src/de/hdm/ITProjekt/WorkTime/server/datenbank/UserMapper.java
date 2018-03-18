@@ -237,6 +237,19 @@ public class UserMapper {
 		}
 
 	}
+
+	public static void removeTable() {
+		AufgabeMapper.removeTable();
+		Connection con = DBConnection.connection();
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			stmt.executeUpdate("DROP TABLE user");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
 }
 
 

@@ -14,9 +14,9 @@ public interface AufgabenAdministration extends RemoteService {
 
 	/* Aufgabe Methoden */
 	
-	public Aufgabe findById(int id);
+	public Aufgabe findTaskById(int id);
 	
-	public Vector <Aufgabe> findAll();
+	public Vector <Aufgabe> findAllTasks();
 	
 	public Aufgabe findByTitel(String titel);
 	
@@ -28,9 +28,9 @@ public interface AufgabenAdministration extends RemoteService {
 	
 	/* Notiz Methoden */
 	
-	public Notiz findById(int id);
+	public Notiz findNoteById(int id);
 	
-	public Vector <Notiz> findAll();
+	public Vector <Notiz> findAllNotes();
 	
 	public Vector <Notiz> findByDate(Date datum);
 	
@@ -44,9 +44,9 @@ public interface AufgabenAdministration extends RemoteService {
 	
 	/* User Methoden */
 	
-	public User findByUserId(int id);
+	public User findUserById(int id);
 	
-	public Vector<Aufgabe> findAll();
+	public Vector <User> findAllUser();
 	
 	public Vector <User> findByLastName(String name);
 	

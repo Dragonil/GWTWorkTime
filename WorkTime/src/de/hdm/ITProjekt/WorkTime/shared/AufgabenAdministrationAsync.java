@@ -12,11 +12,11 @@ import de.hdm.ITProjekt.WorkTime.shared.bo.User;
 public interface AufgabenAdministrationAsync{
 
 	
-	void findById(int id, AsyncCallback <Aufgabe> callback);
+	void findTaskById(int id, AsyncCallback <Aufgabe> callback);
 	
-	void findAll(AsyncCallback <Vector<Aufgabe>> callback);
+	void findAllTasks(AsyncCallback <Vector<Aufgabe>> callback);
 	
-	void findByTitel(String titel, AsyncCallback <Vector<User>> callback);
+	void findByTitel(String titel, AsyncCallback <Aufgabe> callback);
 	
 	void insert(Aufgabe a, AsyncCallback <Aufgabe> callback);
 	
@@ -24,9 +24,9 @@ public interface AufgabenAdministrationAsync{
 	
 	void delete(Aufgabe a, AsyncCallback <Void> callback);
 	
-	void findById(int id, AsyncCallback <Notiz> callback);
+	void findNoteById(int id, AsyncCallback <Notiz> callback);
 	
-	void findAll(AsyncCallback <Vector<Notiz>> callback);
+	void findAllNotes(AsyncCallback <Vector<Notiz>> callback);
 	
 	void findByDate(Date datum, AsyncCallback <Vector<Notiz>> callback);
 	
@@ -38,9 +38,9 @@ public interface AufgabenAdministrationAsync{
 	
 	void delete(Notiz c, AsyncCallback <Void> callback);
 	
-	void findById(int id, AsyncCallback <User> callback);
+	void findUserById(int id, AsyncCallback <User> callback);
 	
-	void findAll(AsyncCallback <Vector<User>> callback);
+	void findAllUser(AsyncCallback <Vector<User>> callback);
 	
 	void findByLastName(String name, AsyncCallback <Vector<User>> callback);
 	
