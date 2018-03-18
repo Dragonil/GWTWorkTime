@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Date;
 import java.util.Vector;
 
 import de.hdm.ITProjekt.WorkTime.shared.bo.User;
@@ -17,7 +18,7 @@ public class UserMapper {
 	protected UserMapper() {
 	}
 	
-	public static UserMapper customerMapper() {
+	public static UserMapper userMapper() {
 		if (userMapper == null) {
 			userMapper = new UserMapper();
 		}
@@ -25,7 +26,7 @@ public class UserMapper {
 		return userMapper;
 	}
 	
-	public User findByKey(int id) {
+	public User findById(int id) {
 		// DB-Verbindung holen
 		Connection con = DBConnection.connection();
 
@@ -45,9 +46,9 @@ public class UserMapper {
 				u.setFirstName(rs.getString("vorname"));
 				u.setLastName(rs.getString("name"));
 				u.setEmail(rs.getString("email"));
-				u.setPasswort(rs.setString("passwort"));
-				u.setLetzerLogin(rs.setDate("letzterLogin"));
-				u.setTyp(rs.setString("typ"));
+				u.setPassword(rs.getString("passwort"));
+				u.setLetzterLogin(rs.getDate("letzterLogin"));
+				u.setType(rs.getInt("typ"));
 
 				return u;
 			}
@@ -68,7 +69,7 @@ public class UserMapper {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(
 					"SELECT id, vorname, name, email, passwort, letzterLogin, typ FROM user " 
-					+ "WHERE id=" + id + " ORDER BY name");
+					+" ORDER BY name");
 			
 			// Für jeden Eintrag im Suchergebnis wird nun ein Objekt erstellt.
 			while (rs.next()) {
@@ -78,9 +79,9 @@ public class UserMapper {
 				u.setFirstName(rs.getString("vorname"));
 				u.setLastName(rs.getString("name"));
 				u.setEmail(rs.getString("email"));
-				u.setPasswort(rs.setString("passwort"));
-				u.setLetzerLogin(rs.setDate("letzterLogin"));
-				u.setTyp(rs.setString("typ"));
+				u.setPassword(rs.getString("passwort"));
+				u.setLetzterLogin(rs.getDate("letzterLogin"));
+				u.setType(rs.getInt("typ"));
 
 				// Hinzufügen des neuen Objekts zum Ergebnisvektor
 				result.addElement(u);
@@ -102,7 +103,7 @@ public class UserMapper {
 
 			ResultSet rs = stmt.executeQuery(
 					"SELECT id, vorname, name, email, passwort, letzterLogin, typ FROM user " 
-					+ "WHERE id=" + id + " ORDER BY name");
+					+ "WHERE name=" + name + " ORDER BY name");
 
 			// Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 			// erstellt.
@@ -112,12 +113,12 @@ public class UserMapper {
 				u.setFirstName(rs.getString("vorname"));
 				u.setLastName(rs.getString("name"));
 				u.setEmail(rs.getString("email"));
-				u.setPasswort(rs.setString("Passwort"));
-				u.setLetzerLogin(rs.setDate("letzterLogin"));
-				u.setTyp(rs.setString("typ"));
+				u.setPassword(rs.getString("Passwort"));
+				u.setLetzterLogin(rs.getDate("letzterLogin"));
+				u.setType(rs.getInt("typ"));
 
 				// Hinzufügen des neuen Objekts zum Ergebnisvektor
-				result.addElement(c);
+				result.addElement(u);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -137,17 +138,15 @@ public class UserMapper {
 					"SELECT id, vorname, name, email, passwort, letzterLogin, typ FROM user " 
 					+ "WHERE email=" + email);
 
-			// Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
-			// erstellt.
 			if (rs.next()) {
 				User u = new User();
 				u.setId(rs.getInt("id"));
 				u.setFirstName(rs.getString("vorname"));
 				u.setLastName(rs.getString("name"));
 				u.setEmail(rs.getString("email"));
-				u.setPasswort(rs.setString("Passwort"));
-				u.setLetzerLogin(rs.setDate("letzterLogin"));
-				u.setTyp(rs.setString("typ"));
+				u.setPassword(rs.getString("Passwort"));
+				u.setLetzterLogin(rs.getDate("letzterLogin"));
+				u.setType(rs.getInt("typ"));
 
 				return u;
 			}
@@ -155,8 +154,7 @@ public class UserMapper {
 			e.printStackTrace();
 		}
 
-		// Ergebnisvektor zurückgeben
-		return result;
+		return null;
 	}
 	
 	public User insert(User u) {
@@ -179,7 +177,7 @@ public class UserMapper {
 				// Jetzt erst erfolgt die tatsächliche Einfügeoperation
 				stmt.executeUpdate("INSERT INTO user (id, name, vorname, email, passwort, letzterLogin, typ) " 
 				+ "VALUES (" + u.getId() + ",'" + u.getFirstName() + "','" + u.getLastName() 
-				+ ",'" + u.getEmail() + ",'" + u.getPasswort() + ",'" + u.getType() + "'," + u.getLetzterLogin() +")");
+				+ ",'" + u.getEmail() + ",'" + u.getPassword() + ",'" + u.getType() + "'," + u.getLetzterLogin() +")");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -195,7 +193,7 @@ public class UserMapper {
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate("INSERT INTO user (id, name, vorname, email, passwort, letzterLogin, typ) " 
 					+ "VALUES (" + u.getId() + ",'" + u.getFirstName() + "','" + u.getLastName() 
-					+ ",'" + u.getEmail() + ",'" + u.getPasswort() + ",'" + u.getType() + "'," + u.getLetzterLogin() +")");
+					+ ",'" + u.getEmail() + ",'" + u.getPassword() + ",'" + u.getType() + "'," + u.getLetzterLogin() +")");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -227,6 +225,7 @@ public class UserMapper {
 				"  letzterLogin date DEFAULT NULL,\n" + 
 				"  type int DEFAULT NULL,\n" +
 				"  PRIMARY KEY (id)\n" + 
+				"  FOREIGN KEY (id) REFERENCES aufgabe(id)" +
 				" )";
 		Connection con = DBConnection.connection();
 		Statement stmt;

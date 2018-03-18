@@ -7,9 +7,6 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.ITProjekt.WorkTime.shared.AufgabenAdministration;
-import de.hdm.ITProjekt.WorkTime.DB.AufgabeMapper;
-import de.hdm.ITProjekt.WorkTime.DB.DBConnection;
-
 import de.hdm.ITProjekt.WorkTime.shared.bo.Aufgabe;
 import de.hdm.ITProjekt.WorkTime.shared.bo.User;
 
@@ -26,13 +23,15 @@ public class AufgabeMapper {
 	 * Singleton AufgabenMapper
 	 */
 	
-	public static AufgabeMapper aufgabeMapper() {
+	static AufgabeMapper aufgabeMapper() {
 		if (aufgabeMapper == null) {
 			aufgabeMapper = new AufgabeMapper();
 		}
 		
 		return aufgabeMapper;
 	}
+	
+	
 	
 	public Aufgabe findByKey(int id) {
 		// DB-Verbindung holen
@@ -79,10 +78,7 @@ public class AufgabeMapper {
 
 			ResultSet rs = stmt.executeQuery(
 					"SELECT id, titel, startDatum, endDatum, status, arbeitszeit, prio"
-					+ " FROM user " + "ORDER BY startDatum");
-
-			// Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
-			// erstellt.
+					+ " FROM user " + "ORDER BY startDatum");			
 			while (rs.next()) {
 				Aufgabe a = new Aufgabe();
 				a.setId(rs.getInt("id"));
@@ -180,7 +176,7 @@ public class AufgabeMapper {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	return u;
+		return a;
 	}
 	
 	public static void delete(Aufgabe aufgabe) {
@@ -215,10 +211,17 @@ public class AufgabeMapper {
 	public static void createTable() {
 		String sqlString = "CREATE TABLE aufgabe (\n" + 
 				"  id int NOT NULL,\n" + 
-				"  titel varchar(45) DEFAULT NULL,\n" + 
-				"  untertitel varchar(45) DEFAULT NULL,\n" + 
+				"  beschreibung varchar(200) DEFAULT NULL,\n" + 
+				"  titel varchar(100) DEFAULT NULL,\n" + 
+				"  startDatum Date DEFAULT NULL,\n" + 
+				"  endDatum Date DEFAULT NULL,\n" + 
+				"  status int DEFAULT NULL,\n" + 
+				"  arbeitszeit int DEFAULT NULL,\n" + 
+				"  prio int DEFAULT NULL,\n" + 
 				"  PRIMARY KEY (id)\n" + 
-				" )";
+				"  FOREIGN KEY (id) REFERENCES user(id)" +
+				"  )";
+		
 		Connection con = DBConnection.connection();
 		Statement stmt;
 		try {

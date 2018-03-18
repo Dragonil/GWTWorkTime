@@ -1,11 +1,18 @@
 package de.hdm.ITProjekt.WorkTime.shared;
 
+import java.sql.Date;
+import java.util.Vector;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public class AufgabenAdministrationAsync{
+import de.hdm.ITProjekt.WorkTime.shared.bo.Aufgabe;
+import de.hdm.ITProjekt.WorkTime.shared.bo.Notiz;
+import de.hdm.ITProjekt.WorkTime.shared.bo.User;
+
+public interface AufgabenAdministrationAsync{
 
 	
-	void findByKey(int id, AsyncCallback <Aufgabe> callback);
+	void findById(int id, AsyncCallback <Aufgabe> callback);
 	
 	void findAll(AsyncCallback <Vector<Aufgabe>> callback);
 	
@@ -17,7 +24,7 @@ public class AufgabenAdministrationAsync{
 	
 	void delete(Aufgabe a, AsyncCallback <Void> callback);
 	
-	void findByKey(int id, AsyncCallback <Notiz> callback);
+	void findById(int id, AsyncCallback <Notiz> callback);
 	
 	void findAll(AsyncCallback <Vector<Notiz>> callback);
 	
@@ -31,7 +38,7 @@ public class AufgabenAdministrationAsync{
 	
 	void delete(Notiz c, AsyncCallback <Void> callback);
 	
-	void findByKey(int id, AsyncCallback <User> callback);
+	void findById(int id, AsyncCallback <User> callback);
 	
 	void findAll(AsyncCallback <Vector<User>> callback);
 	
@@ -42,6 +49,12 @@ public class AufgabenAdministrationAsync{
 	void update(User u, AsyncCallback <User> callback);
 	
 	void delete(User u, AsyncCallback <Void> callback);
+	
+	void createUser(String vorname, String nachname, AsyncCallback <User> callback);
+	
+	void createNotiz(String inhalt, Date datum, AsyncCallback <Notiz> callback);
+	
+	void createAufgabe(String beschreibung, String titel, AsyncCallback <Aufgabe> callback);
 	
 	
 }

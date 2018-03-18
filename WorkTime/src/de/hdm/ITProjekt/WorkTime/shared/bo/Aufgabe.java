@@ -1,6 +1,7 @@
 package de.hdm.ITProjekt.WorkTime.shared.bo;
 
 import java.sql.Date;
+import java.util.Vector;
 
 public class Aufgabe extends BusinessObject{
 	

@@ -1,6 +1,6 @@
 package de.hdm.ITProjekt.WorkTime.shared.bo;
 
-import sun.util.calendar.BaseCalendar.Date;
+import java.sql.Date;
 
 public class User extends BusinessObject {
 
@@ -44,26 +44,26 @@ public class User extends BusinessObject {
 	}
 	
 	public String getPassword() {
-		return password;
+		return passwort;
 	}
 	
-	public void setPassword() {
+	public void setPassword(String passwort) {
 		this.passwort = passwort;
 	}
 	
 	public Date getLetzterLogin() {
-		return letzerLogin;
+		return letzterLogin;
 	}
 	
-	public void setLetzterLogin(Date letzterLogin) {
-		this.letzterLogin = letzterLogin;
+	public void setLetzterLogin(Date date) {
+		this.letzterLogin = date;
 	}
 	
 	public int getType() {
-		return type;
+		return typ;
 	}
 	
-	public void setType() {
+	public void setType(int type) {
 		this.typ = type;
 	}
 	
@@ -87,7 +87,7 @@ public class User extends BusinessObject {
 
 	@Override
 	public String toString() {
-		return "User [firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "User [Vorname=" + vorname + ", Nachname=" + name + "]";
 	}
 	
 }

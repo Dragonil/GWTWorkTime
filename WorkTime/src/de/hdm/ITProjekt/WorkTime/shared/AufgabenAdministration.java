@@ -1,10 +1,20 @@
 package de.hdm.ITProjekt.WorkTime.shared;
 
+import java.sql.Date;
+import java.util.Vector;
+
+import com.google.gwt.user.client.rpc.RemoteService;
+
+import de.hdm.ITProjekt.WorkTime.shared.bo.Aufgabe;
+import de.hdm.ITProjekt.WorkTime.shared.bo.Notiz;
+import de.hdm.ITProjekt.WorkTime.shared.bo.User;
+
+
 public interface AufgabenAdministration extends RemoteService {
 
 	/* Aufgabe Methoden */
 	
-	public Aufgabe findByKey(int id);
+	public Aufgabe findById(int id);
 	
 	public Vector <Aufgabe> findAll();
 	
@@ -18,7 +28,7 @@ public interface AufgabenAdministration extends RemoteService {
 	
 	/* Notiz Methoden */
 	
-	public Notiz findByKey(int id);
+	public Notiz findById(int id);
 	
 	public Vector <Notiz> findAll();
 	
@@ -26,17 +36,17 @@ public interface AufgabenAdministration extends RemoteService {
 	
 	public Vector <Notiz> findByTask(Aufgabe a);
 	
-	public Notiz insert(Notiz c);
+	public Notiz insert(Notiz n);
 	
-	public Notiz update(Notiz c);
+	public Notiz update(Notiz n);
 	
-	public void delete(Notiz c);
+	public void delete(Notiz n);
 	
 	/* User Methoden */
 	
-	public User findByKey(int id);
+	public User findByUserId(int id);
 	
-	public Vector <User> findAll();
+	public Vector<Aufgabe> findAll();
 	
 	public Vector <User> findByLastName(String name);
 	
@@ -53,6 +63,7 @@ public interface AufgabenAdministration extends RemoteService {
 	public Notiz createNotiz(String inhalt, Date datum);
 	
 	public Aufgabe createAufgabe(String beschreibung, String titel);
+
 	
 }
 

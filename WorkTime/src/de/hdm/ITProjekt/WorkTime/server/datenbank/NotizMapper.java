@@ -2,12 +2,10 @@ package de.hdm.ITProjekt.WorkTime.server.datenbank;
 
 import java.sql.SQLException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 
 import de.hdm.ITProjekt.WorkTime.shared.bo.Aufgabe;
 import de.hdm.ITProjekt.WorkTime.shared.bo.Notiz;
@@ -23,7 +21,7 @@ public class NotizMapper {
 	
 	/* Singleton NotizMapper */
 	
-	public static NotizMapper customerMapper() {
+	public static NotizMapper notizMapper(){
 		    if (notizMapper == null) {
 		    	notizMapper = new NotizMapper();
 		    }
@@ -224,7 +222,8 @@ public class NotizMapper {
 					"  farbe varchar(45) DEFAULT NULL,\n" + 
 					"  datum date DEFAULT NULL,\n" + 
 					"  PRIMARY KEY (id)\n" + 
-					" )";
+					"  FOREIGN KEY (id) REFERENCES aufgabe(id)" +
+					"  )";
 			Connection con = DBConnection.connection();
 			Statement stmt;
 			try {
