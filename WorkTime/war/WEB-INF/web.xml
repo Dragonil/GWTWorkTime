@@ -13,7 +13,7 @@
   
   <servlet-mapping>
     <servlet-name>ComServlet</servlet-name>
-    <url-pattern>/worktime/com</url-pattern>
+    <url-pattern>worktime/com</url-pattern>
   </servlet-mapping> 
   
   <!-- Default page to serve -->

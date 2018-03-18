@@ -31,6 +31,7 @@ public class Login {
 		
 		//Debug
 		passwort.setText("1234");
+		email.setText("og016@hdm-stuttgart.de");
 		
 		VerticalPanel vp = new VerticalPanel();
 		vp.setStyleName("Center");

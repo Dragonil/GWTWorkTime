@@ -109,15 +109,13 @@ public class WorkTime implements EntryPoint {
 	public void iniButtons(){
 		Login.getButton().addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent e){
-				//checkLoginDaten();
-				findAllUsers();
+				checkLoginDaten();
+				//findAllUsers();
 			}
 		});
+		
+		
 	}
-	
-
-	
-	
 	
 	
 	/*
@@ -133,13 +131,14 @@ public class WorkTime implements EntryPoint {
 		
 		asyncCom.login(userLogin, new AsyncCallback<User>() {
 			public void onFailure(Throwable error) {
-				Window.alert("Datenbankfehler");
+				Window.alert("Datenbankfehler"+ error.getMessage());
 			}
 			// Erfolgreiche Abfrage der Server daten
 			public void onSuccess(User result) {
 				if (result != null) {
 					eingeloggterUser = result;
 					activeModule = 2;
+					update();
 				}else{
 					Window.alert("Ihrer Logindaten sind falsch");
 				}
@@ -154,7 +153,8 @@ public class WorkTime implements EntryPoint {
 		
 		asyncCom.findAllUsers( new AsyncCallback<Vector<User>>(){
 			public void onFailure(Throwable error) {
-				Window.alert("Datenbankfehler");
+				Window.alert("Datenbankfehler"+ error.getMessage());
+				
 			}
 			
 			@Override

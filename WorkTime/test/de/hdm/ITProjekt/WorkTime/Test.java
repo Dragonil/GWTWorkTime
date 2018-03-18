@@ -11,7 +11,7 @@ import de.hdm.ITProjekt.WorkTime.shared.*;
 public class Test {
 
 	public static void main(String[] args) {
-		
+		/*
 		java.util.Date date = Calendar.getInstance().getTime();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
 		
@@ -44,7 +44,11 @@ public class Test {
 		 NotizMapper.findAll();
 		 //NotizMapper.loeschen(n1.getId());
 		 NotizMapper.findAll();
-		 
+		 */
+		User test = new User();
+		test.setEmail("og016@hdm-stuttgart.de");
+		test.setPasswort("1234");
+		System.out.println(UserMapper.login(test).getName());
 		 
 	}
 

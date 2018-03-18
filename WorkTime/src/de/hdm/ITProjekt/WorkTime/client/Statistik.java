@@ -40,7 +40,7 @@ public class Statistik {
 		
 				
 				fp.setText(0, 0, "Offene Aufgaben");
-				fp.setText(0, 1, "ben\\u00F6tigte Arbeitszeit");
+				fp.setText(0, 1, "benötigte Arbeitszeit");
 				//fp.setText(1, 0, "1. Aufgabe");
 				//fp.setText(1, 1, "1. Arbeitszeit");
 				//fp.setText(2, 0, "2. Aufgabe");

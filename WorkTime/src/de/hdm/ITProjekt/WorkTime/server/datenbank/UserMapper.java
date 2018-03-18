@@ -159,8 +159,10 @@ public class UserMapper {
 		Connection con = DBConnection.connection();
 
 		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE email=" + u.getEmail());
+			PreparedStatement stmt = con.prepareStatement("SELECT * FROM User Where email = '?'");
+			stmt.setEscapeProcessing(true);
+			stmt.setString(1, u.getEmail());
+			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 
