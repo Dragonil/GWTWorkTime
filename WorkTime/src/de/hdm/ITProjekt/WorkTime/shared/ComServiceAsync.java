@@ -1,12 +1,14 @@
-package de.hdm.ITProjekt.WorkTime.client;
+package de.hdm.ITProjekt.WorkTime.shared;
 
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
 import de.hdm.ITProjekt.WorkTime.shared.Notiz;
 import de.hdm.ITProjekt.WorkTime.shared.User;
+
 
 public interface ComServiceAsync {
 	// Aufgaben 

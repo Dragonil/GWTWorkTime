@@ -35,12 +35,6 @@ public class Login {
 		VerticalPanel vp = new VerticalPanel();
 		vp.setStyleName("Center");
 		
-		login.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent e){
-				checkData();
-				//Window.alert("Klick");
-			}
-		});
 		
 		vp.add(new HTML("<Label>EMail:</Label>"));
 		vp.add(email);
@@ -50,12 +44,14 @@ public class Login {
 		return vp;
 	}
 	
-	private static void checkData(){
-		if(passwort.getText() == "1234"){
-			WorkTime.activeModule = 2;
-			WorkTime.update();
-		}else{
-			Window.alert("Falsches Passwort");
-		}
+	
+	public static String getEmail(){
+		return email.getText();
+	}
+	public static String getPasswort(){
+		return passwort.getText();
+	}
+	public static Button getButton(){
+		return login;
 	}
 }

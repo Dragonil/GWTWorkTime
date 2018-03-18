@@ -1,13 +1,19 @@
 package de.hdm.ITProjekt.WorkTime.shared;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Notiz {
+public class Notiz implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String Inhalt;
 	private String farbe;
 	private Date datum;
+	
+	public Notiz(){
+		
+	}
 	
 	public Notiz(String Inhalt, String farbe) {
 		this.Inhalt = Inhalt;

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Vector;
 
 import de.hdm.ITProjekt.WorkTime.shared.User;
@@ -90,13 +92,20 @@ public class UserMapper {
 	}
 
 	public static void insert(User user) {
+		
+		java.util.Date date = Calendar.getInstance().getTime();
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
+		
 		Connection con = DBConnection.connection();
 		try {
-			Statement stmt = con.createStatement();
-			stmt.executeUpdate("INSERT INTO User(id, email, name, passwort, typ, vorname, letzterLogin) VALUES ("
-					+ user.getId() + user.getEmail() + user.getName() + user.getPasswort() + user.getTyp()
-					+ user.getVorname() + user.getLetzterLogin() + ")");
-
+			PreparedStatement stmt = con.prepareStatement("Insert Into User (Name, email, passwort, typ, vorname, letzterLogin) VALUES (?,?,?,?,?, ?)");
+			stmt.setString(1, user.getName());
+			stmt.setString(2, user.getEmail());
+			stmt.setString(3, user.getPasswort());
+			stmt.setInt(4, user.getTyp());
+			stmt.setString(5, user.getVorname());
+			stmt.setDate(6, sqlDate);
+			stmt.executeUpdate();
 			/**
 			 * PreparedStatement statement = con .prepareStatement("INSERT INTO blogeintrag
 			 * (id, titel, untertitel) VALUES (?, ?, ?)"); statement.setInt(1,
@@ -133,7 +142,7 @@ public class UserMapper {
 		Connection con = DBConnection.connection();
 		try {
 			PreparedStatement stmt = con
-					.prepareStatement("UPDATE user (name, email, passwort, typ, vorname) VALUES (?,?,?,?,?)");
+					.prepareStatement("UPDATE User (name, email, passwort, typ, vorname) VALUES (?,?,?,?,?)");
 			stmt.setString(1, user.getName());
 			stmt.setString(2, user.getEmail());
 			stmt.setString(3, user.getPasswort());
@@ -146,17 +155,25 @@ public class UserMapper {
 		}
 	}
 
-	public static boolean login(User u) {
+	public static User login(User u) {
 		Connection con = DBConnection.connection();
 
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE email=");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE email=" + u.getEmail());
 
 			while (rs.next()) {
 
 				if (rs.getString("passwort") == u.getPasswort())
-					return true;
+					u = new User();
+					u.setId(rs.getInt("id"));
+					u.setEmail(rs.getString("email"));
+					u.setName(rs.getString("name"));
+					u.setPasswort(rs.getString("passwort"));
+					u.setTyp(rs.getInt("typ"));
+					u.setVorname(rs.getString("vorname"));
+					u.setLetzterLogin(rs.getDate("letzterLogin"));
+					return u;
 
 			}
 
@@ -164,7 +181,7 @@ public class UserMapper {
 			e.printStackTrace();
 		}
 
-		return false;
+		return null;
 
 	}
 

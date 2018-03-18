@@ -16,6 +16,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
+
 import java.util.ArrayList;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -36,13 +38,13 @@ public class Statistik {
 	public static Panel getPanel() {
 		//Beschriftung der Tabelle
 		
-		
+				
 				fp.setText(0, 0, "Offene Aufgaben");
 				fp.setText(0, 1, "ben\\u00F6tigte Arbeitszeit");
-				fp.setText(1, 0, "1. Aufgabe");
-				fp.setText(1, 1, "1. Arbeitszeit");
-				fp.setText(2, 0, "2. Aufgabe");
-				fp.setText(2, 1, "2. Arbeitszeit");
+				//fp.setText(1, 0, "1. Aufgabe");
+				//fp.setText(1, 1, "1. Arbeitszeit");
+				//fp.setText(2, 0, "2. Aufgabe");
+				//fp.setText(2, 1, "2. Arbeitszeit");
 				
 				//Tabelle Ma�e
 			   //  FlexCellFormatter cellFormatter = fp.getFlexCellFormatter();
@@ -104,11 +106,19 @@ public class Statistik {
 				
 				return HauptPanel;
 				
-	}
+		}
 	
+		public void addData(Aufgabe a){
+			int count = fp.getRowCount();
+			fp.setText(count +1 , 0, a.getTitel());
+			fp.setText(count +1 , 1, a.getArbeitszeit()+"");
+		}
 		
+		public Button getButton(){
+			return Button;
+			
+		}
 	
-
 
 	}
 

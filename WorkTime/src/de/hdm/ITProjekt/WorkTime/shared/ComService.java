@@ -1,12 +1,16 @@
-package de.hdm.ITProjekt.WorkTime.client;
+package de.hdm.ITProjekt.WorkTime.shared;
 
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
 import de.hdm.ITProjekt.WorkTime.shared.Notiz;
 import de.hdm.ITProjekt.WorkTime.shared.User;
+
+@RemoteServiceRelativePath("com")
+
 
 public interface ComService extends RemoteService{
 

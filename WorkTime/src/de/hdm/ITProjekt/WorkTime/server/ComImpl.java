@@ -2,18 +2,27 @@ package de.hdm.ITProjekt.WorkTime.server;
 
 import java.util.Vector;
 
-import de.hdm.ITProjekt.WorkTime.client.ComService;
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
+import de.hdm.ITProjekt.WorkTime.shared.ComService;
 import de.hdm.ITProjekt.WorkTime.server.datenbank.AufgabenMapper;
 import de.hdm.ITProjekt.WorkTime.server.datenbank.NotizMapper;
+import de.hdm.ITProjekt.WorkTime.server.datenbank.UserMapper;
 import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
 import de.hdm.ITProjekt.WorkTime.shared.Notiz;
 import de.hdm.ITProjekt.WorkTime.shared.User;
 
-public class ComImpl implements ComService{
+public class ComImpl extends RemoteServiceServlet implements ComService{
 	
-	// Aufgabe
 	
+	private static final long serialVersionUID = 1L;
 
+	public ComImpl(){
+		
+		
+	}
+	
+	//Aufgabe
 	public void insertAufgabe (Aufgabe a) {
 		AufgabenMapper.insert(a);
 	}
@@ -57,49 +66,49 @@ public class ComImpl implements ComService{
 		//User
     	
 		public Vector<User> findAllUsers() {
-			// TODO Auto-generated method stub
+			// TODO Inahlt Fehlt
 			return null;
 		}
 
 		
 		public User findUserByEmail(String email) {
-			// TODO Auto-generated method stub
+			// TODO Inahlt Fehlt
 			return null;
 		}
 
 		
 		public User findUserById(int id) {
-			// TODO Auto-generated method stub
+			// TODO Inahlt Fehlt
 			return null;
 		}
 
 		
 		public void insertUser(User user) {
-			// TODO Auto-generated method stub
+			// TODO Inahlt Fehlt
 			
 		}
 
 		
 		public void deleteUser(User user) {
-			// TODO Auto-generated method stub
+			// TODO Inahlt Fehlt
 			
 		}
 
 		
 		public void deleteUser(int id) {
-			// TODO Auto-generated method stub
+			// TODO Inahlt Fehlt
 			
 		}
 
 		public void updateUser(User user) {
-			// TODO Auto-generated method stub
+			// TODO Inahlt Fehlt
 			
 		}
 
 		
 		public User login(User u) {
-			// TODO Auto-generated method stub
-			return null;
+			// TODO Inahlt Fehlt
+			return UserMapper.login(u);
 		}
     
 }
