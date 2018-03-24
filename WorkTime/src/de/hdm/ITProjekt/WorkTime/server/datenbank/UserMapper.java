@@ -156,14 +156,22 @@ public class UserMapper {
 	}
 
 	public static User login(User u) {
+		
+		//User user = findByEmail(u.getEmail());
+		//if (user.getPasswort() == u.getPasswort()) return user;
+		
+		
 		Connection con = DBConnection.connection();
 
 		try {
-			PreparedStatement stmt = con.prepareStatement("SELECT * FROM User Where email = '?'");
-			stmt.setEscapeProcessing(true);
-			stmt.setString(1, u.getEmail());
-			ResultSet rs = stmt.executeQuery();
-
+			//PreparedStatement stmt = con.prepareStatement("SELECT * FROM User ");
+			//stmt.setEscapeProcessing(true);
+			//stmt.setString(1, u.getEmail());
+			//ResultSet rs = stmt.executeQuery();
+			
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM User Where email = " + u.getEmail());
+			
 			while (rs.next()) {
 
 				if (rs.getString("passwort") == u.getPasswort())
@@ -178,11 +186,11 @@ public class UserMapper {
 					return u;
 
 			}
-
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
 		return null;
 
 	}

@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DatePicker;
 
+import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
 import de.hdm.ITProjekt.WorkTime.shared.ComService;
 import de.hdm.ITProjekt.WorkTime.shared.ComServiceAsync;
 import de.hdm.ITProjekt.WorkTime.shared.User;
@@ -25,7 +26,7 @@ public class WorkTime implements EntryPoint {
 	
 	private final ComServiceAsync asyncCom = GWT.create(ComService.class);
 	
-	protected static int activeModule = 1;
+	protected static int activeModule = 4;
 	protected static User eingeloggterUser;
 	//private static Panel content = new FlowPanel(); // ContentPanel
 	
@@ -35,6 +36,7 @@ public class WorkTime implements EntryPoint {
 	private static TextBox titel = new TextBox();
 	private static TextArea beschreibung = new TextArea();
 	private static ListBox prio = new ListBox();
+	
 	
 	// DialogBox
 	private static DialogBox dialog;
@@ -60,7 +62,7 @@ public class WorkTime implements EntryPoint {
 		case 3: {	p = Dashboard(Statistik.getPanel()); // Statistik
 					break;
 				}
-		case 4: p = Dashboard(new VerticalPanel());
+		case 4: p = Dashboard(Benutzer.getPanel()); break;
 		}
 		
 
@@ -76,10 +78,10 @@ public class WorkTime implements EntryPoint {
 		DockPanel dp = new DockPanel();
 		VerticalPanel vp = new VerticalPanel();
 		HorizontalPanel hp = new HorizontalPanel();
-		FocusPanel nav[] = {new FocusPanel(new HTML("Kanban")), new FocusPanel(new HTML("Statistik")), new FocusPanel(new HTML("Profil"))};
+		FocusPanel nav[] = {new FocusPanel(new HTML("Aufgaben")), new FocusPanel(new HTML("Statistik")), new FocusPanel(new HTML("Kanban"))};
 
 		hp.setStyleName("naviDiv");
-		
+		//hp.add(new Image("Logo.png"));
 		
 		for(int i=0;i<nav.length; i++) {
 			nav[i].setStyleName("naviElement");
@@ -113,7 +115,13 @@ public class WorkTime implements EntryPoint {
 				//findAllUsers();
 			}
 		});
-		
+
+		   Kanban.senden.addClickHandler(new ClickHandler () { 
+			   public void onClick (ClickEvent e ) {
+				  aufgabeÜbertragen(Kanban.addRow());
+				   
+			   }
+		   });
 		
 	}
 	
@@ -167,5 +175,9 @@ public class WorkTime implements EntryPoint {
 				
 			}
 		});
+	}
+	// Aufruf der AsyncMethode insertAufgabe()
+	private void aufgabeÜbertragen(Aufgabe a){
+		
 	}
 }

@@ -13,6 +13,9 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
+
+import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
+
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Panel;
 
@@ -102,7 +105,16 @@ public class Kanban {
 	   /**
 	    * Add a row to the flex table.
 	    */
-	   static private void addRow(FlexTable flexTable) {
+	   static protected Aufgabe addRow() {
+		   
+		   Aufgabe neueAufgabe = new Aufgabe();
+		   neueAufgabe.setTitel(titel.getText());
+		   neueAufgabe.setBeschreibung(besch.getText());
+		   neueAufgabe.setEndtDatum(date.getTextBox().getText());
+		   neueAufgabe.setPrio(prio.getSelectedIndex());
+		   neueAufgabe.setStatus(0);
+		   
+		   
 	      int numRows = flexTable.getRowCount();
 	      flexTable.setWidget(numRows, 0, new HTML(titel.getText()));
 	      flexTable.setWidget(numRows, 1, new HTML (besch.getText()));
@@ -110,6 +122,8 @@ public class Kanban {
 	      flexTable.setWidget(numRows, 3, new HTML (prio.getSelectedItemText()));
 	      //flexTable.getFlexCellFormatter().setRowSpan(1, 3,  numRows + 1);
 	      
+	      clearText(); // Textfelder Leeren
+	      return neueAufgabe;
 	   }
 
 	   /**
@@ -131,12 +145,6 @@ public class Kanban {
 			prio.addItem("Unwichtig"); // Unwichtig
 		   
 		   
-		   senden.addClickHandler(new ClickHandler () { 
-			   public void onClick (ClickEvent e ) {
-				   addRow(flexTable);
-				   clearText();
-			   }
-		   });
 		   p.add(new HTML("<label>Titel:</label>"));
 		   p.add(titel);
 		   p.add(new HTML("<label>Beschreibung:</label>"));
