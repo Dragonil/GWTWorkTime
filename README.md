@@ -22,6 +22,9 @@ Java Klassen:
   
   
   Aufgaben Gruppe1
+  
+  
+  Falls die Loginseite nicht funtioniert, in client/Worktime die Variable activeModule auf 2 setzen
 
 
 Marco:
