@@ -15,6 +15,13 @@ import de.hdm.ITProjekt.WorkTime.shared.User;
 public class ComImpl extends RemoteServiceServlet implements ComService{
 	
 	
+	/*
+	 * 
+	 * Aufgabe: Alle Methoden mit Inhalt füllen.
+	 * 
+	 */
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	public ComImpl(){
@@ -66,48 +73,48 @@ public class ComImpl extends RemoteServiceServlet implements ComService{
 		//User
     	
 		public Vector<User> findAllUsers() {
-			// TODO Inahlt Fehlt
+			// TODO Inhalt Fehlt
 			return null;
 		}
 
 		
 		public User findUserByEmail(String email) {
-			// TODO Inahlt Fehlt
+			// TODO Inhalt Fehlt
 			return null;
 		}
 
 		
 		public User findUserById(int id) {
-			// TODO Inahlt Fehlt
+			// TODO Inhalt Fehlt
 			return null;
 		}
 
 		
 		public void insertUser(User user) {
-			// TODO Inahlt Fehlt
+			// TODO Inhalt Fehlt
 			
 		}
 
 		
 		public void deleteUser(User user) {
-			// TODO Inahlt Fehlt
+			// TODO Inhalt Fehlt
 			
 		}
 
 		
 		public void deleteUser(int id) {
-			// TODO Inahlt Fehlt
+			// TODO Inhalt Fehlt
 			
 		}
 
 		public void updateUser(User user) {
-			// TODO Inahlt Fehlt
+			// TODO Inhalt Fehlt
 			
 		}
 
 		
 		public User login(User u) {
-			// TODO Inahlt Fehlt
+			// TODO Inhalt Fehlt
 			return UserMapper.login(u);
 		}
     

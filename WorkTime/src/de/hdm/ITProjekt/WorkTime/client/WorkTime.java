@@ -24,9 +24,9 @@ import de.hdm.ITProjekt.WorkTime.shared.User;
 
 public class WorkTime implements EntryPoint {
 	
-	private final ComServiceAsync asyncCom = GWT.create(ComService.class);
+	protected final ComServiceAsync asyncCom = GWT.create(ComService.class);
 	
-	protected static int activeModule = 4;
+	protected static int activeModule = 1; // Panel welches als erstes Angezeigt wird
 	protected static User eingeloggterUser;
 	//private static Panel content = new FlowPanel(); // ContentPanel
 	
@@ -56,13 +56,14 @@ public class WorkTime implements EntryPoint {
 		// Panel Übersicht
 		switch(activeModule){
 		case 1: 	p = Login.getPanel(); break; // Login 
-		case 2: {	p = Dashboard(Kanban.getPanel()); // Aufgaben erstellen
+		case 2: {	p = Dashboard(Kanban.getPanel()); // Kanban
 					break;
 				}
-		case 3: {	p = Dashboard(Statistik.getPanel()); // Statistik
+		case 3: {	p = Dashboard(nAufgaben.getPanel()); // Aufgaben erstellen
 					break;
 				}
-		case 4: p = Dashboard(Benutzer.getPanel()); break;
+		case 4: p = Dashboard(Statistik.getPanel()); break;// Statistik
+		case 5: p = Dashboard(Benutzer.getPanel()); break;// Statistik
 		}
 		
 
@@ -78,7 +79,7 @@ public class WorkTime implements EntryPoint {
 		DockPanel dp = new DockPanel();
 		VerticalPanel vp = new VerticalPanel();
 		HorizontalPanel hp = new HorizontalPanel();
-		FocusPanel nav[] = {new FocusPanel(new HTML("Aufgaben")), new FocusPanel(new HTML("Statistik")), new FocusPanel(new HTML("Kanban"))};
+		FocusPanel nav[] = {new FocusPanel(new HTML("Kanban")), new FocusPanel(new HTML("neue Aufgabe")), new FocusPanel(new HTML("Statistik")), new FocusPanel(new HTML("Benutzer"))};
 
 		hp.setStyleName("naviDiv");
 		//hp.add(new Image("Logo.png"));
@@ -106,6 +107,9 @@ public class WorkTime implements EntryPoint {
 	 * 
 	 * Sammlung aller ClickListener
 	 * 
+	 * Aufgabe:
+	 * 	jedem Button einen ClickListener mit den passenden Funktionen zuweisen
+	 * 
 	 */
 	
 	public void iniButtons(){
@@ -116,12 +120,16 @@ public class WorkTime implements EntryPoint {
 			}
 		});
 
-		   Kanban.senden.addClickHandler(new ClickHandler () { 
-			   public void onClick (ClickEvent e ) {
-				  aufgabeÜbertragen(Kanban.addRow());
-				   
-			   }
-		   });
+	   nAufgaben.senden.addClickHandler(new ClickHandler () { 
+		   public void onClick (ClickEvent e ) {
+			  aufgabeÜbertragen(nAufgaben.addRow());
+			   
+		   }
+	   });
+	   
+	   /*
+	    * ClickLisener für den Aktuallisieren Button der Statistik soll das Panel neu Laden => mathode update() aufrufen;
+	    */
 		
 	}
 	
@@ -130,6 +138,8 @@ public class WorkTime implements EntryPoint {
 	 * 
 	 * Beispiel für einen AsyncCallback bei Login
 	 * 
+	 * 
+	 * Aufgabe: weitere Async Callbacks schreiben um die Daten aus der Datenbank zu den Panels zu bekommen.
 	 */
 	
 	private void checkLoginDaten(){
@@ -146,6 +156,7 @@ public class WorkTime implements EntryPoint {
 				if (result != null) {
 					eingeloggterUser = result;
 					activeModule = 2;
+					Window.alert("Eingeloggt");
 					update();
 				}else{
 					Window.alert("Ihrer Logindaten sind falsch");
@@ -178,6 +189,18 @@ public class WorkTime implements EntryPoint {
 	}
 	// Aufruf der AsyncMethode insertAufgabe()
 	private void aufgabeÜbertragen(Aufgabe a){
-		
+		asyncCom.insertAufgabe(a, new AsyncCallback<Void>(){
+			public void onFailure(Throwable error) {
+				Window.alert("Datenbankfehler"+ error.getMessage());
+				
+			}
+			
+			@Override
+			public void onSuccess(Void a) {
+				// TODO Auto-generated method stub
+				Window.alert("Aufgabe übertragen");
+				
+			}
+		});
 	}
 }

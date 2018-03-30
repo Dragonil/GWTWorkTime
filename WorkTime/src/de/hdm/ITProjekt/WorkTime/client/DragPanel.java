@@ -3,6 +3,7 @@ package de.hdm.ITProjekt.WorkTime.client;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.DragLeaveEvent;
 import com.google.gwt.event.dom.client.DragLeaveHandler;
@@ -13,18 +14,25 @@ import com.google.gwt.event.dom.client.DragStartHandler;
 import com.google.gwt.event.dom.client.DropEvent;
 import com.google.gwt.event.dom.client.DropHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
+import de.hdm.ITProjekt.WorkTime.shared.ComService;
+import de.hdm.ITProjekt.WorkTime.shared.ComServiceAsync;
+
 public class DragPanel extends FocusPanel{
+	protected final ComServiceAsync asyncCom = GWT.create(ComService.class);
 	
 	private static DragPanel dragging = null;
 	final boolean droppable;
-
+	private Aufgabe aufgabe;
 	
 	public DragPanel(boolean draggable, boolean droppable){
 	   if (draggable) {
@@ -41,7 +49,9 @@ public class DragPanel extends FocusPanel{
 	   }
 	 }
 	
-	
+	private void addAufgabe(Aufgabe a){
+		this.aufgabe = a;
+	}
 	
 	private void initDrag() {
 		     getElement().setDraggable(Element.DRAGGABLE_TRUE);
@@ -80,41 +90,37 @@ public class DragPanel extends FocusPanel{
 			    	 
 			    	 VerticalPanel source = (VerticalPanel) dragging.getParent();
 			    	 source.remove(dragging);
-			    	//Window.alert(event.toString());
 			    	
 			    	 VerticalPanel targ = (VerticalPanel) DragPanel.this.getParent();
+			    
 			    	 targ.add(dragging);
-			    	 
-			    	 /*
-				     VerticalPanel target = null;
-				     VerticalPanel source = null;
-				     VerticalPanel main = (VerticalPanel) DragPanel.this.getParent();
-				     List<Panel> Panels = new ArrayList<Panel>();
-				     
-				     while (main.getWidgetCount()>0) {
-				    	 Panels.add((Panel) main.getWidget(0));
-				    	 main.remove(0);
-				        
-				     }
-			     
-			   
-				     if (source != null && target != null) {
-				       VerticalPanel testTarget = target;
-				       while (testTarget != null) {
-				         if (testTarget == source) {
-				           return;
-				         }
-				         testTarget = (VerticalPanel) testTarget.getParent();
-				       }
-				       target.add(source);
-				     }
-				     */
+			    	 //updateAufgabe(Integer.parseInt(targ.getElement().getId()));  erst Nutzen wenn Richtige Aufgaben vorhaben
 				     dragging = null;
 			     }
 			}
 		 }, DropEvent.getType());
 	 }
 	
+	
+	/*
+	 * Async Callback um den Status der Aufgabe zu ändern
+	 * 
+	 */
+	private void updateAufgabe(int status){
+		aufgabe.setStatus(status);
+		asyncCom.updateAufgabe(aufgabe, new AsyncCallback<Void>(){
+			public void onFailure(Throwable error) {
+				Window.alert("Datenbankfehler"+ error.getMessage());
+			}
+			
+			@Override
+			public void onSuccess(Void a) {
+				// TODO Auto-generated method stub
+				Window.alert("Status geändert");
+				
+			}
+		});
+	}
 	
 
 

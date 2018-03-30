@@ -17,6 +17,8 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
+import de.hdm.ITProjekt.WorkTime.shared.ComService;
+import de.hdm.ITProjekt.WorkTime.shared.ComServiceAsync;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,7 @@ import com.google.gwt.user.client.ui.*;
 
 
 public class Statistik {
+	protected final ComServiceAsync asyncCom = GWT.create(ComService.class);
 	
 	private static VerticalPanel HauptPanel = new VerticalPanel();
 	private static FlexTable fp = new FlexTable();
@@ -37,10 +40,17 @@ public class Statistik {
 	
 	public static Panel getPanel() {
 		//Beschriftung der Tabelle
-		
+				
+				
 				
 				fp.setText(0, 0, "Offene Aufgaben");
 				fp.setText(0, 1, "benötigte Arbeitszeit");
+				
+				/*
+				 * Aufgabe: Daten über AsyncCallback aus der Datenabk holen um die Tabellen zu befüllen 
+				 * z.B. über eine foreach schleife und der Methode addData
+				 */
+				
 				//fp.setText(1, 0, "1. Aufgabe");
 				//fp.setText(1, 1, "1. Arbeitszeit");
 				//fp.setText(2, 0, "2. Aufgabe");
@@ -54,46 +64,8 @@ public class Statistik {
 			      fp.setCellPadding(5);
 			      //fp.addCell(1);
 			    //fp.setBorderWidth(100); //Gitter
-			    fp.getRowFormatter().addStyleName(0, "watchListHeader");	    //Formatierung Zeile 0!
-			    
-			      
-			      
-			 
-
-
-			      
-			   /*   // Add a button that will add more rows to the table
-			      Button addRowButton = new Button("Add a Row"); 
-			      addRowButton.addClickHandler(new ClickHandler() {
-			         @Override
-			         public void onClick(ClickEvent event) {
-			            addRow(fp);
-			         }
-			       //  addRowButton.addStyleName("Button");
-
-
-					private void addRow(FlexTable fp) {
-						// TODO Auto-generated method stub
-						
-					}
-			      });*/
-			      
-			    /*  // Add a button that will remove more rows to the table
-			      Button removeRowButton = new Button("Remove a Row"); 
-			      removeRowButton.addClickHandler(new ClickHandler() {
-			         @Override
-			         public void onClick(ClickEvent event) {
-			            removeRow(fp);
-			         }
-			        // removeRowButton.addStyleName("fixedWidthButton");
-			        
-					private void removeRow(FlexTable fp) {
-						// TODO Auto-generated method stub
-						
-					}
-			      });*/
+			    fp.getRowFormatter().addStyleName(0, "watchListHeader");	    //Formatierung Zeil 0
 				
-				//RootPanel-> HTML-Seite?
 				
 				
 				//Label-Text (unten)
@@ -108,15 +80,22 @@ public class Statistik {
 				
 		}
 	
-		public void addData(Aufgabe a){
+		public static void addData(Aufgabe a){
 			int count = fp.getRowCount();
 			fp.setText(count +1 , 0, a.getTitel());
 			fp.setText(count +1 , 1, a.getArbeitszeit()+"");
 		}
 		
-		public Button getButton(){
+		public static Button getButton(){
 			return Button;
 			
+		}
+		
+		public static void getAufgaben(){
+			/*
+			 * AsyncCallback um die Aufgaben aus der Datenbak zu erhalten bsp. siehe WorkTime.java
+			 * Daten am besten über einen Vector an die Tabelle übertragen
+			 */
 		}
 	
 

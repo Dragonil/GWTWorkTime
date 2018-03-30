@@ -96,4 +96,8 @@ public class Aufgabe implements Serializable {
 	{
 		return this.userID;
 	}
+	public void setUserID (int id)
+	{
+		this.userID = id;
+	}
 }
