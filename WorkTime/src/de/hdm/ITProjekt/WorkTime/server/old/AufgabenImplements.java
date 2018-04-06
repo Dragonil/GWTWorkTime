@@ -1,8 +1,9 @@
-package de.hdm.ITProjekt.WorkTime.server.datenbank;
+package de.hdm.ITProjekt.WorkTime.server.old;
 
 import java.util.Vector;
 
-import de.hdm.ITProjekt.WorkTime.client.AufgabenService;
+import de.hdm.ITProjekt.WorkTime.client.old.AufgabenService;
+import de.hdm.ITProjekt.WorkTime.server.datenbank.AufgabenMapper;
 import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
 
 public class AufgabenImplements implements AufgabenService {

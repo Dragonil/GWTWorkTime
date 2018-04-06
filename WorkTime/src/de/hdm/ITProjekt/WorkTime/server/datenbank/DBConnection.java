@@ -10,7 +10,7 @@ public class DBConnection {
 
 	private static String datenbankTyp = "mySQL";
 	
-	private static String datenbankUrl = "jdbc:mysql://vweb12.nitrado.net:3306?user=ni249339_1sql9&password=ITProjekt";
+	private static String datenbankUrl = "jdbc:mysql://vweb12.nitrado.net:3306/ni249339_1sql9?user=ni249339_1sql9&password=ITProjekt";
 	
 	public static Connection connection() {
 		try{

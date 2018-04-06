@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.Vector;
 import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
 
@@ -14,11 +15,15 @@ public class AufgabenMapper {
 	{
 		Connection con = DBConnection.connection();
 		
+		java.util.Date date = Calendar.getInstance().getTime();
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
+		
+		
 		try {
 			PreparedStatement stmt = con.prepareStatement("INSERT into Aufgabe (beschreibung, titel, startDatum, endDatum, status, arbeitszeit, prio, userID) VALUES(?,?,?,?,?,?,?,?)");
 			stmt.setString(1, a.getBeschreibung());
 			stmt.setString(2, a.getTitel());
-			stmt.setString(3, a.getStartDatum());
+			stmt.setDate(3, sqlDate);
 			stmt.setString(4, a.getEndDatum());
 			stmt.setInt(5, a.getStatus());
 			stmt.setInt(6, a.getArbeitszeit());
@@ -92,15 +97,14 @@ public static void update (Aufgabe a)
 	Connection con = DBConnection.connection();
 	
 	try {
-		PreparedStatement stmt = con.prepareStatement("UPDATE Aufgabe (beschreibung, titel, startDatum, endDatum, status, arbeitszeit, prio, userID) VALUES(?,?,?,?,?,?,?,?)");
+		PreparedStatement stmt = con.prepareStatement("UPDATE Aufgabe (beschreibung, titel,  endDatum, status, arbeitszeit, prio, userID) VALUES(?,?,?,?,?,?,?)");
 		stmt.setString(1, a.getBeschreibung());
 		stmt.setString(2, a.getTitel());
-		stmt.setString(3, a.getStartDatum());
-		stmt.setString(4, a.getEndDatum());
-		stmt.setInt(5, a.getStatus());
-		stmt.setInt(6, a.getArbeitszeit());
-		stmt.setInt(7, a.getPrio());
-		stmt.setInt(8, a.getUserID());
+		stmt.setString(3, a.getEndDatum());
+		stmt.setInt(4, a.getStatus());
+		stmt.setInt(5, a.getArbeitszeit());
+		stmt.setInt(6, a.getPrio());
+		stmt.setInt(7, a.getUserID());
 		stmt.executeUpdate();
 	}
 	catch (SQLException e) {
@@ -108,3 +112,5 @@ public static void update (Aufgabe a)
 		}
 	}
 }
+
+

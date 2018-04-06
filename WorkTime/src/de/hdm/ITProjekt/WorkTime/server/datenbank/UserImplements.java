@@ -26,7 +26,7 @@ public class UserImplements {
 	public void update(User user) {
 	}
 
-	public boolean login(User u) {
+	public User login(User u) {   //Vorher ...boolean login...   Aber Fehler aufgetreten
 		return UserMapper.login(u);
 	}
 

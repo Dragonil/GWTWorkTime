@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.Vector;
 
 import de.hdm.ITProjekt.WorkTime.shared.Notiz;
@@ -12,13 +13,13 @@ public class NotizMapper {
 	
 
 	public static void Notizanlegen(Notiz notiz) {
-
+		java.util.Date date = Calendar.getInstance().getTime();
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
 		Connection con = DBConnection.connection();
 		try {
 			Statement statement = con.createStatement();
-			statement.executeUpdate("INSERT INTO notiz (id, inhalt, datum, farbe) VALUES (" + 
-					notiz.getId() + notiz.getInhalt() +
-					notiz.getfarbe() + notiz.getDatum() +")");
+			statement.executeUpdate("INSERT INTO Notiz ( inhalt, datum, farbe, aufgabeID) VALUES ('"+ notiz.getInhalt() +"','"+ sqlDate + "','"+
+					notiz.getfarbe() +"', 1)");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -35,7 +36,7 @@ public static void Notizloeschen(Notiz notiz) {
 		Connection con = DBConnection.connection();
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate("DELETE FROM notiz " + "WHERE id = " + id);
+			stmt.executeUpdate("DELETE FROM Notiz " + "WHERE id = " + id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -48,7 +49,7 @@ public static void Notizloeschen(Notiz notiz) {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM notiz " + "WHERE id = " + id);
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Notiz " + "WHERE id = " + id);
 			if (rs.next()) {
 				Notiz n = new Notiz(rs.getString("inhalt"),//mit get hol ich daten aus klasse und schrieb in db
 						rs.getString("farbe"));
@@ -65,13 +66,12 @@ public static void Notizloeschen(Notiz notiz) {
 	public static Vector<Notiz> findAll() {
 		
 		Connection con = DBConnection.connection();
-		Vector<Notiz> result = new Vector<Notiz>();//Vector, weil alle Daten zurück will die werden im Vector abgespeichert
+		Vector<Notiz> result = new Vector<Notiz>();//Vector, weil alle Daten zurï¿½ck will die werden im Vector abgespeichert
 		
 		try {
 			
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * from notiz " +
-							"where notiz.id");
+			ResultSet rs = stmt.executeQuery("SELECT * from Notiz ");
 			
 			
 			while (rs.next()) {

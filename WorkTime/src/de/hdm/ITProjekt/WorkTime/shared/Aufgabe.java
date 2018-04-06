@@ -1,10 +1,13 @@
 package de.hdm.ITProjekt.WorkTime.shared;
 
+import java.io.Serializable;
 import java.util.*;
 
 
-public class Aufgabe {
+public class Aufgabe implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String startDatum;
 	private String endDatum;;
 	private String titel;
@@ -14,6 +17,10 @@ public class Aufgabe {
 	private int prio;
 	private int aufgabenID;
 	private int userID;
+	
+	public Aufgabe(){
+		
+	}
 	
 	public Aufgabe (String startDatum, String endDatum, String titel, String beschreibung, int arbeitszeit, int status, int prio, int userID)
 	{
@@ -88,5 +95,9 @@ public class Aufgabe {
 	public int getUserID ()
 	{
 		return this.userID;
+	}
+	public void setUserID (int id)
+	{
+		this.userID = id;
 	}
 }

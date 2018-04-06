@@ -16,6 +16,10 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.ITProjekt.WorkTime.shared.Aufgabe;
+import de.hdm.ITProjekt.WorkTime.shared.ComService;
+import de.hdm.ITProjekt.WorkTime.shared.ComServiceAsync;
+
 import java.util.ArrayList;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -25,24 +29,34 @@ import com.google.gwt.user.client.ui.*;
 
 
 public class Statistik {
+	protected final ComServiceAsync asyncCom = GWT.create(ComService.class);
 	
-	private VerticalPanel HauptPanel = new VerticalPanel();
-	private FlexTable fp = new FlexTable();
-	private Button Button = new Button ("aktualisieren");
-	private Label Label = new Label ();
-	//Daten in Tabelle einf�gen
+	private static VerticalPanel HauptPanel = new VerticalPanel();
+	private static FlexTable fp = new FlexTable();
+	private static Button Button = new Button ("aktualisieren");
+	private static Label Label = new Label ();
+	//Daten in Tabelle einf�gen
 	//private ArrayList<String> stocks = new ArrayList<String>();
 	
-	public void onModuleLoad() {
+	public static Panel getPanel() {
 		//Beschriftung der Tabelle
-				fp.setText(0, 0, "Offene Aufgaben");
-				fp.setText(0, 1, "ben\\u00F6tigte Arbeitszeit");
-				fp.setText(1, 0, "1. Aufgabe");
-				fp.setText(1, 1, "1. Arbeitszeit");
-				fp.setText(2, 0, "2. Aufgabe");
-				fp.setText(2, 1, "2. Arbeitszeit");
 				
-				//Tabelle Ma�e
+				
+				
+				fp.setText(0, 0, "Offene Aufgaben");
+				fp.setText(0, 1, "benötigte Arbeitszeit");
+				
+				/*
+				 * Aufgabe: Daten über AsyncCallback aus der Datenabk holen um die Tabellen zu befüllen 
+				 * z.B. über eine foreach schleife und der Methode addData
+				 */
+				
+				//fp.setText(1, 0, "1. Aufgabe");
+				//fp.setText(1, 1, "1. Arbeitszeit");
+				//fp.setText(2, 0, "2. Aufgabe");
+				//fp.setText(2, 1, "2. Arbeitszeit");
+				
+				//Tabelle Ma�e
 			   //  FlexCellFormatter cellFormatter = fp.getFlexCellFormatter();
 			      fp.addStyleName("flexTable");//deshalb in css .flexTable
 			      fp.setWidth("32em"); //Breite der Tabelle
@@ -50,47 +64,9 @@ public class Statistik {
 			      fp.setCellPadding(5);
 			      //fp.addCell(1);
 			    //fp.setBorderWidth(100); //Gitter
-			    fp.getRowFormatter().addStyleName(0, "watchListHeader");	    //Formatierung Zeile 0!
-			    
-			      
-			      
-			 
-
-
-			      
-			   /*   // Add a button that will add more rows to the table
-			      Button addRowButton = new Button("Add a Row"); 
-			      addRowButton.addClickHandler(new ClickHandler() {
-			         @Override
-			         public void onClick(ClickEvent event) {
-			            addRow(fp);
-			         }
-			       //  addRowButton.addStyleName("Button");
-
-
-					private void addRow(FlexTable fp) {
-						// TODO Auto-generated method stub
-						
-					}
-			      });*/
-			      
-			    /*  // Add a button that will remove more rows to the table
-			      Button removeRowButton = new Button("Remove a Row"); 
-			      removeRowButton.addClickHandler(new ClickHandler() {
-			         @Override
-			         public void onClick(ClickEvent event) {
-			            removeRow(fp);
-			         }
-			        // removeRowButton.addStyleName("fixedWidthButton");
-			        
-					private void removeRow(FlexTable fp) {
-						// TODO Auto-generated method stub
-						
-					}
-			      });*/
+			    fp.getRowFormatter().addStyleName(0, "watchListHeader");	    //Formatierung Zeil 0
 				
-				//RootPanel-> HTML-Seite?
-				RootPanel.get("content").add(HauptPanel);
+				
 				
 				//Label-Text (unten)
 				Label.setText("");
@@ -100,11 +76,28 @@ public class Statistik {
 				HauptPanel.add(Button);
 				HauptPanel.add(Label);
 				
-	}
+				return HauptPanel;
+				
+		}
 	
+		public static void addData(Aufgabe a){
+			int count = fp.getRowCount();
+			fp.setText(count +1 , 0, a.getTitel());
+			fp.setText(count +1 , 1, a.getArbeitszeit()+"");
+		}
 		
+		public static Button getButton(){
+			return Button;
+			
+		}
+		
+		public static void getAufgaben(){
+			/*
+			 * AsyncCallback um die Aufgaben aus der Datenbak zu erhalten bsp. siehe WorkTime.java
+			 * Daten am besten über einen Vector an die Tabelle übertragen
+			 */
+		}
 	
-
 
 	}
 

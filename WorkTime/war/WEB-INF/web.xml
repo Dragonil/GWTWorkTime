@@ -5,16 +5,16 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets
+  <!-- Servlets -->
   <servlet>
-    <servlet-name>ServletName</servlet-name>
-    <servlet-class>de.hdm.ITProjekt.WorkTime.server.JavaServerKlassenName</servlet-class>
+    <servlet-name>ComServlet</servlet-name>
+    <servlet-class>de.hdm.ITProjekt.WorkTime.server.ComImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>ServletName</servlet-name>
-    <url-pattern>/worktime/JavaServiceKlassenPfad</url-pattern>
-  </servlet-mapping> -->
+    <servlet-name>ComServlet</servlet-name>
+    <url-pattern>worktime/com</url-pattern>
+  </servlet-mapping> 
   
   <!-- Default page to serve -->
   <welcome-file-list>
