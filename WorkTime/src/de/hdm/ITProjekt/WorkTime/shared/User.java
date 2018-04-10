@@ -12,7 +12,7 @@ public class User implements Serializable {
 	private String vorname;
 	private String email;
 	private String passwort;
-	private Date letzterLogin;
+	private Date letzterLogintest;
 	private int typ;
 	private int plz;
 
