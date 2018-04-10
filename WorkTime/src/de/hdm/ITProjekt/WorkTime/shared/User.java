@@ -14,7 +14,7 @@ public class User implements Serializable {
 	private String passwort;
 	private Date letzterLogin;
 	private int typ;
-	private int plz2;
+	private int plz222;
 
 	public User() {
 
