@@ -1,5 +1,6 @@
 Aufgaben Gruppe1 IT Vorprodukt:
 
+Falls die Loginseite nicht funtioniert, in client/Worktime die Variable activeModule auf 2 setzen
 
 Marco:
 In der Klasse server/ComImpl alle Methoden füllen, bsp. Alle anderen Methoden
