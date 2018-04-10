@@ -34,9 +34,7 @@ public class WorkTime implements EntryPoint {
 	// Aufgaben
 	private static DateBox date = new DateBox();
 	private static TextBox titel = new TextBox();
-	private static TextArea beschreibung = new TextArea();
-	
-	
+	private static TextArea beschreibung = new TextArea();	
 	private static ListBox prio = new ListBox();
 	
 	
