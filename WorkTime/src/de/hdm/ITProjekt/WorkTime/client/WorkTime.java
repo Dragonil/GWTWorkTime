@@ -44,7 +44,7 @@ public class WorkTime implements EntryPoint {
 	
 	private Label html = new HTML("<h1> You have" + counter + " tasks to be done. </h1>");
 	
-	private Button saveBtn = new Button("Speicher");
+	private Button saveBtn = new Button("Speichern");
 	
 	
 	//Startmethode
